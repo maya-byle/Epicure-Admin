@@ -4,7 +4,8 @@ import axios, {
   AxiosResponse,
 } from "axios";
 
-const baseURL = process.env.REACT_APP_SERVER_BASE_URL;
+// const baseURL = process.env.REACT_APP_SERVER_BASE_URL;
+const baseURL = "http://localhost:3001/api/v1/";
 
 export const HttpClientService = {
   async post<T>(
@@ -79,7 +80,6 @@ export const HttpClientService = {
   async send<T>(
     httpOptions: AxiosRequestConfig
   ): Promise<AxiosResponse<T, any>> {
-    // eslint-disable-next-line no-param-reassign
     httpOptions.headers = {
       ...httpOptions.headers,
     };

@@ -1,0 +1,81 @@
+.table-container {
+    background-color: inherit;
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 50px;
+
+    .table {
+        background-color: rgb(27, 40, 63); //TODO: add as constant
+        // display: block;
+        overflow: hidden;
+        border-collapse: collapse;
+        table-layout: auto;
+        border-radius: 10px;
+        white-space: nowrap;
+        width: 100%;
+        height: 90%;
+        margin: auto;
+        overflow-x: auto;
+
+        // tr::after {
+        //     display: block;
+        //     border-bottom: 1px solid #ccc; 
+        //     margin: 5px 0; 
+        // }
+
+        thead {
+            color: rgb(92, 89, 132); //TODO: add as constant
+            width: 100%;
+            // text-align: left;
+        }
+
+        td {
+            color: white;
+            padding: 0.8rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        tbody tr {
+            height: 50px;
+            vertical-align: top; 
+            &:hover {
+                background-color: #7b839a; //TODO: add as constant
+            }
+        }
+
+        .label {
+            border-radius: 3px;
+            padding: 0.3rem;
+            cursor: pointer;
+          
+            &.label-draft {
+                color: #777;
+                border-color: #777;
+            }
+          
+            &.label-active {
+                color: #42a942;
+                border-color: #42a942;
+            }
+          
+            &.label-deleted {
+                color: #d9534f;
+                border-color: #d9534f;
+            }
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+
+            svg {
+                cursor: pointer;
+            }
+          }
+    }
+}
