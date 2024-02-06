@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { BsFillPencilFill, BsFillTrashFill, BsCopy } from 'react-icons/bs';
-import { HttpClientService } from '../../HttpServerClient.ts';
+import { HttpClientService } from '../../services/HttpServerClient.ts';
+import { useLocation } from 'react-router-dom'; 
 import './table.scss';
-
-interface Chef {
-    _id: string;
-    name: string;
-    description: string;
-    image: string;
-    // restaurants: string[];
-    status: string;
-}
+import * as resources from '../../resources/resources.ts';
 
 function Table() {
-    const [data, setData] = useState<Chef[] | null>(null);
+    const location = useLocation(); 
+    const currLocation = location.pathname;
+    const currType = resources.LINKS_RESOURCES.find(link => link.herf === currLocation)?.type;
+    const [data, setData] = useState<any[]>(); //TODO: fix type
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response: any = await HttpClientService.get('/chefs');
+                const response: any = await HttpClientService.get(currLocation);
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -26,39 +22,35 @@ function Table() {
         }
 
         fetchData();
-    }, []); // TODO: change it to redux
+    }, [currLocation]); // TODO: change it to redux
 
-    const keys = Object.keys(data ? data[0] : []);
+    if (!currType) {
+        return <div>No data found for the current location.</div>;
+    }
 
     return (
         <div className='table-container'>
             <table className='table'>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>status</th>
-                        <th></th>
+                        {Object.keys(currType).map((key) => (
+                            <th key={key}>{currType[key]}</th>
+                        ))}
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data && data.map((chef) => (
-                        <tr key={chef._id}>
-                            <td>{chef._id}</td>
-                            <td>{chef.name}</td>
-                            <td>{chef.description}</td>
-                            <td>{chef.image}</td>
-                            <td> 
-                                <span className={`label label-${chef.status}`}>{chef.status}</span>
-                            </td>
+                    {data && data.map((item) => (
+                        <tr key={item._id}>
+                            {Object.keys(currType).map((key) => (
+                                <td key={key}>{item[key]}</td>
+                            ))}
                             <td>
                                 <span className='actions'>
                                     <BsFillPencilFill/>
                                     <BsCopy/>
                                     <BsFillTrashFill/>
-                                </span>    
+                                </span>
                             </td>
                         </tr>
                     ))}
