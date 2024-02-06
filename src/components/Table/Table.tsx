@@ -26,7 +26,7 @@ function Table() {
     }, [currLocation]); // TODO: change it to redux
 
     if (!currType) {
-        return <div>{constants.TABLE_RESOURCES.TYPE_ERROR}</div>;
+        return <div>{constants.TABLE_CONSTANTS.TYPE_ERROR}</div>;
     }
 
     return (
