@@ -4,6 +4,7 @@ import { HttpClientService } from '../../services/HttpServerClient.ts';
 import { useLocation } from 'react-router-dom'; 
 import './table.scss';
 import * as resources from '../../resources/resources.ts';
+import * as constants from '../../resources/constants.ts';
 
 function Table() {
     const location = useLocation(); 
@@ -25,7 +26,7 @@ function Table() {
     }, [currLocation]); // TODO: change it to redux
 
     if (!currType) {
-        return <div>No data found for the current location.</div>;
+        return <div>{constants.TABLE_RESOURCES.TYPE_ERROR}</div>;
     }
 
     return (
@@ -36,7 +37,7 @@ function Table() {
                         {Object.keys(currType).map((key) => (
                             <th key={key}>{currType[key]}</th>
                         ))}
-                        <th>Actions</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

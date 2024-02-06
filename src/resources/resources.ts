@@ -3,7 +3,7 @@ export const CHEF_RESOURCES = {
   name: "name",
   description: "description",
   image: "image",
-  RESTAURANTS: "restaurants",
+  restaurants: "restaurants",
   status: "status",
 };
 
