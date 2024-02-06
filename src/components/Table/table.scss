@@ -1,14 +1,15 @@
 .table-container {
     background-color: inherit;
-    width: 90%;
+    width: 85vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0 50px;
 
     .table {
-        background-color: rgb(27, 40, 63);
+        background-color: rgb(27, 40, 63); //TODO: add as constant
         // display: block;
         overflow: hidden;
         border-collapse: collapse;
@@ -16,17 +17,18 @@
         border-radius: 10px;
         white-space: nowrap;
         width: 100%;
+        height: 90%;
         margin: auto;
         overflow-x: auto;
 
-        tr::after {
-            display: block;
-            border-bottom: 1px solid #ccc; 
-            margin: 5px 0; 
-        }
+        // tr::after {
+        //     display: block;
+        //     border-bottom: 1px solid #ccc; 
+        //     margin: 5px 0; 
+        // }
 
         thead {
-            color: rgb(92, 89, 132);
+            color: rgb(92, 89, 132); //TODO: add as constant
             width: 100%;
             // text-align: left;
         }
@@ -39,8 +41,10 @@
         }
 
         tbody tr {
+            height: 50px;
+            vertical-align: top; 
             &:hover {
-                background-color: #878c9b;
+                background-color: #7b839a; //TODO: add as constant
             }
         }
 
