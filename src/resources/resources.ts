@@ -32,3 +32,10 @@ export const LINKS_RESOURCES = [
   { herf: "/dishes", name: "Dishes", type: DISH_RESOURCES },
   { herf: "/restaurants", name: "Restaurants", type: RESTAURANT_RESOURCES },
 ];
+
+export const ACTIONS_RESOURCES = {
+  FETCH_DATA: "FETCH_DATA",
+  ADD_DATA: "ADD_DATA",
+  UPDATE_DATA: "UPDATE_DATA",
+  DELETE_DATA: "DELETE_DATA",
+};
