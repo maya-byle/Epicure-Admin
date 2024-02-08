@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './sidebar.scss';
-import * as resources from '../../resources/resources.ts'
+import * as constants from '../../resources/constants.ts'
 
 function Sidebar() {
-    const links = resources.LINKS_RESOURCES
+    const links = constants.LINKS_RESOURCES
 
     return ( 
         <div className='sidebar'>
