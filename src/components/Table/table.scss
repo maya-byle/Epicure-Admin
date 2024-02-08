@@ -1,22 +1,23 @@
 .table-container {
     background-color: inherit;
-    width: 90%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
     height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    margin-top: 20px;
+
 
     .table {
         background-color: rgb(27, 40, 63);
-        // display: block;
-        overflow: hidden;
+        overflow-x: hidden;
         border-collapse: collapse;
-        table-layout: auto;
+        // table-layout: auto;
         border-radius: 10px;
         white-space: nowrap;
-        width: 100%;
-        margin: auto;
+        width: 90%;
+        min-width: 800px; /* Change the minimum width as needed */
+        max-width: 100%;
 
         tr::after {
             display: block;
@@ -26,15 +27,27 @@
 
         thead {
             color: rgb(92, 89, 132);
-            width: 100%;
-            // text-align: left;
+            // width: 100%;
+
+            th{
+                font-size: 22px;
+            }
         }
 
         td {
+            font-size: medium;
             color: white;
             padding: 0.8rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            // text-overflow: ellipsis;
+            max-width: 170px; 
+            min-width: 80px;
+            overflow-x: auto;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+            &::-webkit-scrollbar {
+                display: none; 
+            }
+
         }
 
         tbody tr {
@@ -54,8 +67,8 @@
             }
           
             &.active {
-                color: #42a942;
-                border-color: #42a942;
+                color: #7bbc7b;
+                border-color: #7bbc7b;
             }
           
             &.deleted {

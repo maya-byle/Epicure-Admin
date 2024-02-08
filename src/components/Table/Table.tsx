@@ -45,9 +45,9 @@ function Table() {
             <table className='table'>
                 <thead>
                     <tr>
-                    {Object.keys(currType).map((key) => (
-    <th key={key}>{currType[key]}</th>
-))}
+                        {Object.keys(currType).map((key) => (
+                            <th key={key}>{currType[key]}</th>
+                        ))}
                         <th></th>
                     </tr>
                 </thead>
