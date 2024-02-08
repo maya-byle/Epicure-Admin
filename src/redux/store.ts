@@ -1,20 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
-import reducer from "./reducers.ts";
+import chefReducer from "./chefs/chefSlice.ts";
 
-interface State {
-  data: any;
-}
-
-const initialState: State[] = []; //TODO: fetch data using thunk
-
-const middleware = [thunk];
-
-// Create the Redux store using configureStore
 const store = configureStore({
-  reducer: reducer,
+  reducer: {
+    chef: chefReducer,
+    //     dish: dishReducer,
+    //     restaurant: restaurantReducer,
+  },
   //   middleware: [thunk],
-  preloadedState: initialState,
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

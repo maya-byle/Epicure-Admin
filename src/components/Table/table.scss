@@ -48,17 +48,17 @@
             padding: 0.3rem;
             cursor: pointer;
           
-            &.label-draft {
+            &.draft {
                 color: #777;
                 border-color: #777;
             }
           
-            &.label-active {
+            &.active {
                 color: #42a942;
                 border-color: #42a942;
             }
           
-            &.label-deleted {
+            &.deleted {
                 color: #d9534f;
                 border-color: #d9534f;
             }
