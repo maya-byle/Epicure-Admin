@@ -4,7 +4,8 @@ import * as constants from '../../resources/constants.ts';
 import resources from '../../resources/resources.ts';
 
 function Sidebar() {
-    const links = constants.LINKS_RESOURCES
+    const links = constants.LINKS_RESOURCES;
+    const currentPath = window.location.pathname;
 
     return ( 
         <div className='sidebar'>
@@ -13,7 +14,9 @@ function Sidebar() {
             <header className='sidebar_title'>{resources.SIDEBAR_TITLE}</header>
             <ul className='links'>
                 {links.map((link) => (
-                    <a className='link' key={link.name} href={link.herf}>
+                    <a className={`link ${link.herf === currentPath ? 'current' : ''}`}
+                        key={link.name}
+                        href={link.herf}>
                         {link.name}
                     </a>
                 ))}

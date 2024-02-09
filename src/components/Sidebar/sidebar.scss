@@ -24,10 +24,15 @@
 
         .link {
             color: white;
-            width:90%;
+            width: 80%;
             padding: 8px;
-            border-radius: 4px;
+            border-radius: 7px;
             transition: background-color 1s ease;
+
+            &.current {
+                background-color: #7b839a;
+                // color: rgb(34, 69, 167);;
+            }
 
             &:hover {
                 background-color: #7b839a;

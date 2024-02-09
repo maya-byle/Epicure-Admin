@@ -3,7 +3,14 @@
   text-align: center;
   background-color: rgb(20, 32, 49);
   height: 100vh;
-} 
+
+  .content_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 70px;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -12,7 +19,6 @@
   text-decoration: none;
   font-size: large;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  /* transition: 0.5s ease; */
 }
 
 .loading-icon {

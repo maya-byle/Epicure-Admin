@@ -22,10 +22,10 @@ export const DISH_RESOURCES = {
 
 export const RESTAURANT_RESOURCES = {
   _id: "id",
-  image: "image",
   name: "name",
   description: "description",
-  chef: "chefName",
+  image: "image",
+  chef: "chef",
   status: "status",
 };
 

@@ -4,14 +4,17 @@ import Dashboard from './pages/Dashboard.tsx';
 import Sidebar from './components/Sidebar/Sidebar.tsx';
 import { ROUTES } from './resources/constants.ts';
 import Header from './components/Header/Header.tsx';
+import { Fade } from "react-awesome-reveal";
 
 const Layout = () => {
   return (
     <>
       <Sidebar />
-      <div className='content_container' style={{display: 'flex', flexDirection:'column', width: '100%', marginRight:'70px' }}>
-        <Header />
-        <Outlet />
+      <div className='content_container'>
+        <Fade cascade duration={300}>
+          <Header />
+          <Outlet />
+        </Fade>
       </div>
     </>
   );

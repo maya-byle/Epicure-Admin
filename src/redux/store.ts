@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
-import chefReducer from "./chefs/chefSlice.ts";
+import tableReducer from "./tables/tableSlice.ts";
+import stateSlice from "./states/stateSlice.ts";
 
 const store = configureStore({
   reducer: {
-    collection: chefReducer,
-    //     dish: dishReducer,
-    //     restaurant: restaurantReducer,
+    collection: tableReducer,
+    states: stateSlice, //TODO: change name
   },
   //   middleware: [thunk],
 });
