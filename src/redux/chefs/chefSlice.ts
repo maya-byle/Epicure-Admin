@@ -1,20 +1,20 @@
 // TODO: Decide where to fetch the data and whether to separate the slices or keep them combined for all.
 import { createSlice } from "@reduxjs/toolkit";
-import { CHEF_RESOURCES } from "../../resources/constants.ts";
+import * as constants from "../../resources/constants.ts";
 import * as thunks from "../thunks.ts";
 
-interface chefState {
-  currentChefsData: (typeof CHEF_RESOURCES)[];
-  status?: string;
+interface IChef {
+  collectionData: (typeof constants.CHEF_RESOURCES)[];
+  status: string;
 }
 
-const initialState: chefState = {
-  currentChefsData: [],
-  status: "loading",
+const initialState: IChef = {
+  collectionData: [],
+  status: constants.STATUS_CODE.IDLE,
 };
 
 const chefSlice = createSlice({
-  name: "chef",
+  name: "collection",
   initialState,
   reducers: {
     // setCurrentChef(state, action) {
@@ -24,41 +24,41 @@ const chefSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(thunks.fetchData.pending, (state) => {
-        state.status = "loading";
+        state.status = constants.STATUS_CODE.LOADING;
       })
       .addCase(thunks.fetchData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.currentChefsData = action.payload;
+        state.status = constants.STATUS_CODE.IDLE;
+        state.collectionData = action.payload;
       })
 
-      .addCase(thunks.updateData.pending, (state) => {
-        state.status = "loading";
-      })
       .addCase(thunks.updateData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.currentChefsData = state.currentChefsData.map((chef) => {
+        state.status = constants.STATUS_CODE.IDLE;
+        state.collectionData = state.collectionData.map((chef) => {
           return chef._id !== action.payload._id ? chef : action.payload;
         });
       })
-
-      .addCase(thunks.addData.pending, (state) => {
-        state.status = "loading";
+      .addCase(thunks.updateData.rejected, (state) => {
+        state.status = "rejected";
       })
+
       .addCase(thunks.addData.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = constants.STATUS_CODE.IDLE;
         console.log(action.payload);
-        state.currentChefsData = state.currentChefsData.concat(action.payload); //TODO: why isnt it working and how to improve
+        state.collectionData = state.collectionData.concat(action.payload); //TODO: fix
+      })
+      .addCase(thunks.addData.rejected, (state) => {
+        state.status = "rejected";
       })
 
-      .addCase(thunks.deleteData.pending, (state) => {
-        state.status = "loading";
-      })
       .addCase(thunks.deleteData.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = constants.STATUS_CODE.IDLE;
         console.log(action.payload.dish._id);
-        state.currentChefsData = state.currentChefsData.filter((chef) => {
+        state.collectionData = state.collectionData.filter((chef) => {
           return chef._id !== action.payload.dish._id;
         });
+      })
+      .addCase(thunks.deleteData.rejected, (state) => {
+        state.status = "rejected";
       });
   },
 });

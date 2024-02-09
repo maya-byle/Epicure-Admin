@@ -4,7 +4,7 @@ import chefReducer from "./chefs/chefSlice.ts";
 
 const store = configureStore({
   reducer: {
-    chef: chefReducer,
+    collection: chefReducer,
     //     dish: dishReducer,
     //     restaurant: restaurantReducer,
   },

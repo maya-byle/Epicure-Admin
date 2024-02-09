@@ -8,7 +8,7 @@ export const fetchData = createAsyncThunk(
   async (route: string): Promise<any> => {
     try {
       const response = await HttpClientService.get(route);
-      return response.data; //returns it straight to the action.payload
+      return response.data;
     } catch (error) {
       console.log(error);
       return error;
@@ -34,7 +34,6 @@ export const updateData = createAsyncThunk(
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.put(route, item);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
