@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { closeModal } from '../../../redux/states/stateSlice.ts';
 import { BsX } from 'react-icons/bs';
 import EditForm from '../../EditForm/EditForm.tsx';
+import { Fade } from "react-awesome-reveal";
 
 function Modal() {
     const dispatch = useDispatch();
@@ -14,14 +15,16 @@ function Modal() {
 
     return (
       <div className='modal-backdrop' onClick={handleClose}>
-          <div className='modal-container' onClick={(e) => e.stopPropagation()}>
-            <div className='modal-btn-container'>
-              <button className='modal-close-btn' >
-                <BsX onClick={handleClose}/>
-              </button>
+          <Fade cascade duration={300}>
+            <div className='modal-container' onClick={(e) => e.stopPropagation()}>
+              <div className='modal-btn-container'>
+                <button className='modal-close-btn' >
+                  <BsX onClick={handleClose}/>
+                </button>
+              </div>
+              <EditForm/>
             </div>
-            <EditForm/>
-          </div>
+          </Fade>
       </div>
     );
   };
