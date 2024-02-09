@@ -3,15 +3,17 @@
     flex-direction: column;
     height: 100vh;
     min-width: 10rem;
+    max-width: 20%;
     background-color: inherit(220, 212, 145);
     border-right: 2px solid rgb(27, 40, 63);
     margin-left: 1rem;
-    margin-right: 1rem;
+    margin-right: 2rem;
     gap: 2rem;
     
-    header {
+    .sidebar_title {
         color: gray;
         text-align: left;
+        font-weight: 500;
         font-size: x-large;
     }
     .links {

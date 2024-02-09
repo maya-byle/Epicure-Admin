@@ -48,3 +48,10 @@ export const ROUTES = {
   HOME_PAGE: "/",
   CONTENT_PAGE: "/:routeName",
 };
+
+//////////// REDUX ////////////
+export const STATUS_CODE = {
+  IDLE: "idle",
+  REJECTED: "rejected",
+  LOADING: "loading",
+};
