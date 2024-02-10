@@ -19,7 +19,7 @@ function Modal() {
             <div className='modal-container' onClick={(e) => e.stopPropagation()}>
               <div className='modal-btn-container'>
                 <button className='modal-close-btn' >
-                  <BsX onClick={handleClose}/>
+                  <BsX size={30} color={'white'} onClick={handleClose}/>
                 </button>
               </div>
               <EditForm/>

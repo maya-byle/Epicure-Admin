@@ -1,0 +1,45 @@
+.editForm_container {
+    background-color: rgb(94, 101, 127);
+    max-width: 400px;
+    // margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: white;
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+  
+      input {
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+  
+      .edit-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+  

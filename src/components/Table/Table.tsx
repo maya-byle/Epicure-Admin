@@ -187,6 +187,6 @@ function Table() {
             </table>
         </div>
     );
-}
+};
 
 export default Table;

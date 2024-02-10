@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsDatabaseFillAdd } from 'react-icons/bs';
 import './header.scss';
 import { useDispatch } from 'react-redux';

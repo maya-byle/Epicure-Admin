@@ -11,10 +11,7 @@ const Layout = () => {
     <>
       <Sidebar />
       <div className='content_container'>
-        <Fade cascade duration={300}>
-          <Header />
           <Outlet />
-        </Fade>
       </div>
     </>
   );

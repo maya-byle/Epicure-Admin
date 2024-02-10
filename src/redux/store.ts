@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { thunk } from "redux-thunk";
 import tableReducer from "./tables/tableSlice.ts";
 import stateSlice from "./states/stateSlice.ts";
 
