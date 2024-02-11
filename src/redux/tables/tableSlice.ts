@@ -1,25 +1,30 @@
-// TODO: Decide where to fetch the data and whether to separate the slices or keep them combined for all.
 import { createSlice } from "@reduxjs/toolkit";
 import * as constants from "../../resources/constants.ts";
 import * as thunks from "../tables/tableThunks.ts";
+import { ICollection } from "../../Types/collectionType.ts";
 
 interface ITable {
   collectionData: (typeof constants.CHEF_RESOURCES)[];
   status: string;
+  currentModal: ICollection | undefined;
 }
 
 const initialState: ITable = {
   collectionData: [],
   status: constants.STATUS_CODE.IDLE,
+  currentModal: undefined,
 };
 
 const tableSlice = createSlice({
   name: "tableSlice",
   initialState,
   reducers: {
-    // setCurrentChef(state, action) {
-    //   state.currentChef = action.payload;
-    // },
+    setModal(state, action) {
+      state.currentModal = action.payload;
+    },
+    closeModal(state) {
+      state.currentModal = undefined;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,6 +66,6 @@ const tableSlice = createSlice({
   },
 });
 
-// export const { setCurrentChef } = chefSlice.actions;
+export const { setModal, closeModal } = tableSlice.actions;
 
 export default tableSlice.reducer;

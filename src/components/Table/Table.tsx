@@ -116,7 +116,7 @@ import * as constants from '../../resources/constants.ts';
 import * as thunks from '../../redux/tables/tableThunks.ts';
 import { BsFillPencilFill, BsFillTrashFill, BsCopy } from 'react-icons/bs';
 import { SpinningCircles } from 'react-loading-icons'
-import { setModal } from '../../redux/states/stateSlice.ts';
+import { setModal } from '../../redux/tables/tableSlice.ts';
 
 function Table() {
     const dispatch = useDispatch<AppDispatch>()

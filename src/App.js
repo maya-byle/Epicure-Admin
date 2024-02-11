@@ -1,21 +1,8 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from './pages/Dashboard.tsx';
-import Sidebar from './components/Sidebar/Sidebar.tsx';
 import { ROUTES } from './resources/constants.ts';
-import Header from './components/Header/Header.tsx';
-import { Fade } from "react-awesome-reveal";
-
-const Layout = () => {
-  return (
-    <>
-      <Sidebar />
-      <div className='content_container'>
-          <Outlet />
-      </div>
-    </>
-  );
-};
+import Layout from './pages/Layout/Layout.tsx';
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME_PAGE, element: <Layout />,
