@@ -49,23 +49,23 @@ function EditForm() {
                     {key === 'image' ? (
                       <>
                       <Image
-                    cloudName = 'dhavutxxt'
-                    uploadPreset = 'epicure-admin'
-                    onChange={(info) => setImage(info.target.files[0])}
-                />
-                <UploadWidget onUpload={handleOnUpload}>
-                  {({ open }) => {
-                    function handleOnClick(e) {
-                      e.preventDefault();
-                      open();
-                    }
-                    return (
-                      !image && <button onClick={handleOnClick}>
-                        Upload an Image
-                      </button>
-                    )
-                  }}
-                </UploadWidget>             
+                        cloudName = 'dhavutxxt'
+                        uploadPreset = 'epicure-admin'
+                        onChange={(info) => setImage(info.target.files[0])}
+                      />
+                      <UploadWidget onUpload={handleOnUpload}>
+                        {({ open }) => {
+                          function handleOnClick(e) {
+                            e.preventDefault();
+                            open();
+                          }
+                          return (
+                            !image && <button onClick={handleOnClick}>
+                              Upload an Image
+                            </button>
+                          )
+                        }}
+                      </UploadWidget>             
                       </>
                     ) : (
                         <input

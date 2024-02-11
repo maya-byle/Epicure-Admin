@@ -1,3 +1,4 @@
+import './dashboard.scss';
 import * as React from 'react';
 import Table from '../components/Table/Table.tsx';
 import Modal from '../components/UI/Modal/Modal.tsx';
@@ -10,7 +11,7 @@ function Dashboard() {
     const modal = useSelector((state: RootState) => state.collection.currentModal);
 
     return ( 
-        <div>
+        <div className='dashboard_container'>
             <Fade cascade duration={300}>
                 <Header />
                 <Table />

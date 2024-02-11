@@ -1,7 +1,6 @@
 .editForm_container {
     background-color: rgb(94, 101, 127);
     max-width: 400px;
-    // margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -15,14 +14,19 @@
     form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-  
+      gap: 10px;
+
+      .form_row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
       label {
         margin-bottom: 8px;
         font-weight: bold;
       }
   
-      input {
+      input, button {
         width: 230px;
         height: 30px;
         padding: 8px;
@@ -30,7 +34,9 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         margin-left: 10px;
+        justify-self: flex-end;
       }
+    }
   
       .submit-btn {
         background-color: #007bff;
