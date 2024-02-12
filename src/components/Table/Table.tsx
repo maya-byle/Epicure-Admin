@@ -170,8 +170,10 @@ function Table() {
                     {data && data.map((item) => (
                         <tr key={item._id}>
                             {Object.keys(currType).map((key) => (
-                                <td key={key} className={key === 'status' ? `label ${item.status}` : ''}>{item[key]}</td>
-                                ))}
+                                <td key={key} className={key === 'status' ? `label ${item.status}` : ''}>
+                                    {key === 'image' ? <img src={item[key]} alt="img"/> : item[key] }
+                                </td>
+                            ))}
                             <td>
                                 <span className='actions'>
                                     <BsFillPencilFill onClick={() => handleEdit(item)}/>

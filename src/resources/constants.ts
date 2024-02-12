@@ -22,8 +22,8 @@ export const DISH_RESOURCES = {
 
 export const RESTAURANT_RESOURCES = {
   _id: "id",
-  title: "name",
-  subTitle: "description",
+  name: "name",
+  description: "description",
   image: "image",
   chef: "chef",
   status: "status",
