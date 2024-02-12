@@ -26,7 +26,7 @@
         font-weight: bold;
       }
   
-      input {
+      input, button {
         background-color: white;
         color: gray;
         width: 230px;
@@ -39,10 +39,11 @@
         justify-self: flex-end;
         font-size:small;
         text-align:'left';
+        overflow-x: auto;
       }
       input[type='file']
       {
-          text-indent: -999em;
+          // text-indent: -999em;
           cursor: pointer;
       }
     }
@@ -56,7 +57,8 @@
         cursor: pointer;
 
         &.disabled {
-          cursor:auto;
+          cursor: not-allowed;
+          opacity: 0.5;
           background-color: rgb(179, 179, 179);
         }
         .submit-btn:hover {
@@ -65,4 +67,3 @@
       }
     }
   }
-  

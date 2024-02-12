@@ -126,7 +126,6 @@ function Table() {
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
       
-    console.log(data)
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
     },[dispatch])
