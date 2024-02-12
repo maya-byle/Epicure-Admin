@@ -7,6 +7,7 @@ import UploadWidget from './uploadWidget';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store.ts';
 import * as thunks from '../../redux/tables/tableThunks.ts';
+import resources from '../../resources/resources.ts';
 
 function EditForm() {
     const location = useLocation(); 
@@ -21,7 +22,6 @@ function EditForm() {
     
     const [formData, setFormData] = useState(newFormFields);
     const [image, setImage] = useState();
-    const [error, updateError] = useState();
     const isFormValid = Object.values(formData).every(value => value !== '');
 
     const handleInputChange = useCallback((key, value) => {
@@ -30,7 +30,6 @@ function EditForm() {
 
     const handleOnUpload = (error, result, widget) => {
       if ( error ) {
-        updateError(error);
         widget.close({
           quiet: true
         });
@@ -67,9 +66,9 @@ function EditForm() {
                           }
                           return (
                             !image ? <button onClick={handleOnClick} style={{textAlign:'left', color:'grey', backgroundColor:'white', fontSize:'small', cursor: 'pointer'}}>
-                              Upload image
+                              {resources.UPLOAD}
                             </button> :
-                            <button style={{overflowX: 'auto'}}>{image}</button>
+                            <button >{image}</button>
                           )
                         }}
                       </UploadWidget>             
@@ -87,7 +86,7 @@ function EditForm() {
                 </div>
             ))}
             <button className={`submit-btn ${!isFormValid ? 'disabled' : ''}`} type="submit" disabled={!isFormValid}>
-              Submit
+              {resources.SUBMIT}
             </button>
         </form>
         </div>

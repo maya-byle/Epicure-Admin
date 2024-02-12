@@ -77,8 +77,7 @@ function TableRow({ item, editMode, handleEdit }) {
                                     id={`image_${changedItem._id}`}
                                     src={item[key]}
                                     alt="img"
-                                    style={{ cursor: 'pointer' }}
-                                />
+                                 />
                             ) : (
                                 item[key]
                             )}
@@ -112,8 +111,8 @@ function TableRow({ item, editMode, handleEdit }) {
                                         value={changedItem[key]}
                                         onChange={(e) => handleChange(e, key)}
                                     >
-                                        <option value="active">Active</option>
-                                        <option value="deleted">Deleted</option>
+                                        <option value="active">{resources.ACTIVE}</option>
+                                        <option value="deleted">{resources.DELETED}</option>
                                     </select>
                                 ) : (
                                     <input

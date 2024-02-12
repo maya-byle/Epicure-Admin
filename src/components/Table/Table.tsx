@@ -24,11 +24,11 @@ function Table() {
     const handleEdit = async (item: typeof currType) => { 
         setEditMode(item?._id ? item._id : undefined)
     };
+    
 
     if (!currType || loadingStatus === constants.STATUS_CODE.REJECTED) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
     }
-
 
     if (loadingStatus === constants.STATUS_CODE.LOADING) {
         return <SpinningCircles className='loading-icon'/>;

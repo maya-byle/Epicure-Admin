@@ -10,7 +10,7 @@ export type IChef = {
 export type IDish = {
   _id: string;
   name: string;
-  description: string[]; //TODO: match from db
+  description: string[];
   image: string;
   restaurant: string;
   tags: string[];

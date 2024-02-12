@@ -13,26 +13,3 @@ export const transformData = (data: ICollection) => {
   }
   return data;
 };
-
-// export const transformDishData = (data: BackendDish[]): Section => {
-//   const collection = data.map((dish) => ({
-//     title: dish.title,
-//     image: dish.image,
-//     description: dish.ingredients.join(", "),
-//     foodIcon: getFoodIcon(dish.tags[0]),
-//     price: dish.price,
-//   }));
-
-//   return collection;
-// };
-
-// export const transformRestaurantData = (data: BackendRestaurant[]): Section => {
-//   const collection = data.map((restaurant) => ({
-//     title: restaurant.title,
-//     image: restaurant.image,
-//     subtitle: restaurant.chef.title,
-//     rating: getRatingImage(restaurant.rating),
-//   }));
-
-//   return collection;
-// };

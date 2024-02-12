@@ -1,7 +1,7 @@
 import './modal.scss';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../../redux/tables/tableSlice.ts';
+import { setModal } from '../../../redux/tables/tableSlice.ts';
 import { BsX } from 'react-icons/bs';
 import EditForm from '../../EditForm/EditForm.tsx';
 import { Fade } from "react-awesome-reveal";
@@ -10,7 +10,7 @@ function Modal() {
     const dispatch = useDispatch();
 
     const handleClose = () => {
-        dispatch(closeModal());
+        dispatch(setModal(undefined));
     };
 
     return (
