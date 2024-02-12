@@ -6,13 +6,15 @@ import { ICollection } from "../../Types/collectionType.ts";
 interface ITable {
   collectionData: (typeof constants.CHEF_RESOURCES)[];
   status: string;
-  currentModal: ICollection | undefined;
+  isModal: ICollection | undefined;
+  currDocument: number | undefined;
 }
 
 const initialState: ITable = {
   collectionData: [],
   status: constants.STATUS_CODE.IDLE,
-  currentModal: undefined,
+  isModal: undefined,
+  currDocument: undefined,
 };
 
 const tableSlice = createSlice({
@@ -20,10 +22,10 @@ const tableSlice = createSlice({
   initialState,
   reducers: {
     setModal(state, action) {
-      state.currentModal = action.payload;
+      state.isModal = action.payload;
     },
-    closeModal(state) {
-      state.currentModal = undefined;
+    setDocument(state, action) {
+      state.currDocument = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -67,6 +69,6 @@ const tableSlice = createSlice({
   },
 });
 
-export const { setModal, closeModal } = tableSlice.actions;
+export const { setModal, setDocument } = tableSlice.actions;
 
 export default tableSlice.reducer;

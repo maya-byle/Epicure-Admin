@@ -15,16 +15,11 @@ function Table() {
     const currType = useCollection()?.type;
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
-    const [editMode, setEditMode] = useState<string>();
     
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
     },[dispatch])
 
-    const handleEdit = async (item: typeof currType) => { 
-        setEditMode(item?._id ? item._id : undefined)
-    };
-    
 
     if (!currType || loadingStatus === constants.STATUS_CODE.REJECTED) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
@@ -47,7 +42,7 @@ function Table() {
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <TableRow key={item._id} item={item} handleEdit={handleEdit} editMode={editMode} />
+                        <TableRow key={item._id} item={item}/>
                     ))}
                 </tbody>
             </table>

@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import resources from '../../resources/resources.ts';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store.ts';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store.ts';
 import { BsFillPencilFill, BsFillTrashFill, BsCopy, BsSave, BsX } from 'react-icons/bs';
 import useCollection from '../../hooks/useCollection.ts';
 import * as thunks from '../../redux/tables/tableThunks.ts';
 import * as constants from '../../resources/constants.ts';
+import { setDocument } from '../../redux/tables/tableSlice.ts';
 
-function TableRow({ item, editMode, handleEdit }) {
+function TableRow({ item }) {
     const dispatch = useDispatch<AppDispatch>();
     const currLocation = useLocation().pathname;
     const currType = useCollection()?.type;
     const [changedItem, setItem] = useState({ ...item });
-
+    const currDocument = useSelector((state: RootState) => state.collection.currDocument)
+    
     useEffect(() => {
-        if (editMode === changedItem._id) {
+        if (currDocument === changedItem._id) {
             const cloudinaryWidget = window.cloudinary.createUploadWidget(
                 {
                     cloudName: 'dhavutxxt',
@@ -39,7 +41,7 @@ function TableRow({ item, editMode, handleEdit }) {
                 });
             };
         }
-    }, [editMode, changedItem]);
+    }, [currDocument, changedItem]);
 
     if (!currType) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
@@ -53,7 +55,7 @@ function TableRow({ item, editMode, handleEdit }) {
     const handleSave = async (toSave: typeof currType) => {
         const { _id, ...itemWithoutId } = toSave;
         dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
-        handleEdit(undefined);
+        dispatch(setDocument(undefined));
     };
 
     const handleDelete = async (toDelete: typeof currType) => {
@@ -68,7 +70,7 @@ function TableRow({ item, editMode, handleEdit }) {
 
     return (
         <tr key={item._id}>
-            {editMode !== changedItem._id ? (
+            {currDocument !== changedItem._id ? (
                 <>
                     {Object.keys(currType).map((key) => (
                         <td key={key} className={key === 'status' ? `label ${item.status}` : ''}>
@@ -85,7 +87,7 @@ function TableRow({ item, editMode, handleEdit }) {
                     ))}
                     <td>
                         <span className="actions">
-                            <BsFillPencilFill onClick={() => handleEdit(item)} />
+                            <BsFillPencilFill onClick={() => dispatch(setDocument(item._id))} />
                             <BsCopy onClick={() => handleCopy(item)} />
                             <BsFillTrashFill onClick={() => handleDelete(item)} />
                         </span>
@@ -96,7 +98,7 @@ function TableRow({ item, editMode, handleEdit }) {
                 <>
                     {Object.keys(currType).map((key) => (
                         <td key={key} className={key === 'status' ? `label ${changedItem.status}` : ''}>
-                            {editMode === changedItem._id ? (
+                            {currDocument === changedItem._id ? (
                                 key === 'image' ? (
                                     <img
                                         id={`image_${changedItem._id}`}
@@ -131,7 +133,7 @@ function TableRow({ item, editMode, handleEdit }) {
                         <span className="actions">
                             <BsSave onClick={() => handleSave(changedItem)} />
                             <BsX onClick={() => {setItem({...item})
-                                handleEdit(undefined);
+                                dispatch(setDocument(undefined));
                             }} />
                         </span>
                     </td>

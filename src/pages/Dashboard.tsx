@@ -8,7 +8,7 @@ import Header from '../components/Header/Header.tsx';
 import { Fade } from 'react-awesome-reveal';
 
 function Dashboard() {
-    const modal = useSelector((state: RootState) => state.collection.currentModal);
+    const modal = useSelector((state: RootState) => state.collection.isModal);
 
     return ( 
         <div className='dashboard_container'>
