@@ -1,85 +1,76 @@
-import React, { useCallback, useMemo, useState } from 'react';
 import './editForm.scss';
-import { Image } from 'cloudinary-react';
-import UploadWidget from './uploadWidget';
-import { useLocation } from 'react-router';
+import React, { useCallback, useState } from 'react';
 import { LINKS_RESOURCES } from '../../resources/constants.ts';
+import axios from 'axios';
+import useCollection from '../../hooks/useCollection.ts';
 
 function EditForm() {
-    const location = useLocation(); 
-    const currLocation = location.pathname;
-    const documentType: any = useMemo(()=>LINKS_RESOURCES.find((link) => link.herf === currLocation)?.type,[])
+    const documentType = useCollection()?.type;
     const newFormFields = {};
     for (const key in documentType) {
         newFormFields[documentType[key]] = "";
     }
+    const cloudName = 'dhavutxxt';
+    const uploadPreset = 'epicure-admin';
     
     const [formData, setFormData] = useState(newFormFields);
     const [image, setImage] = useState();
-    const [error, updateError] = useState();
-
-    function handleSave() {
-        console.log("Saved");
-    }
+    const [error, setError] = useState();
+    const [cloudinaryImage, setCloudinaryImage] = useState();
+    const isFormValid = Object.values(formData).every(value => value !== '');
 
     const handleInputChange = useCallback((key, value) => {
-      if(value[0])
-        value = value[0]
       setFormData({ ...formData, [key]: value });
-  },[formData])
+    }, [formData])
 
-    function handleOnUpload(error, result, widget) {
-      if ( error ) {
-        updateError(error);
-        widget.close({
-          quiet: true
-        });
-        return;
+    const handleImg = (e) => {
+      if(e.target.files[0]) {
+        setImage(e.target.files[0])
       }
-      setImage(result?.info?.secure_url);
+    }
+
+    const handleUpload = async(file) => {
+      const formData = new FormData();
+      formData.append("file", file)
+      formData.append("upload_preset", `${uploadPreset}`);
+      let data = "";
+      try {
+        data = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
+      } catch(e) {
+        console.log(e)
+        alert(e)
+      }
+      return data;
+    }
+
+    const handleSubmit = async() => {
+      const cloudinaryRes = await handleUpload(image);
+      setCloudinaryImage(cloudinaryRes["secure_url"])
     }
 
     return (
         <div className='editForm_container'>
-            <h2>Create Document</h2>
-            <form onSubmit={handleSave}>
+          <h2>Create Document</h2>
+          <form onSubmit={handleSubmit}>
               {Object.keys(newFormFields).map((key) => (
                 <div className='form_row' key={key}>
                     <label htmlFor={key}>{key}</label>
-                    {key === 'image' ? (
-                      <>
-                      <Image
-                        cloudName = 'dhavutxxt'
-                        uploadPreset = 'epicure-admin'
-                        onChange={(info) => setImage(info.target.files[0])}
+                      <input
+                          type={key === 'image' ? 'file': "text"}
+                          accept={key === 'image' ? "image/*" : ''}
+                          id={key}
+                          name={key}
+                          placeholder={key}
+                          value={formData[key]}
+                          onChange={key === 'image' ?handleImg : (e) =>handleInputChange(key, e.target.value)}
                       />
-                      <UploadWidget onUpload={handleOnUpload}>
-                        {({ open }) => {
-                          function handleOnClick(e) {
-                            e.preventDefault();
-                            open();
-                          }
-                          return (
-                            !image && <button onClick={handleOnClick}>
-                              Upload an Image
-                            </button>
-                          )
-                        }}
-                      </UploadWidget>             
-                      </>
-                    ) : (
-                        <input
-                            type="text"
-                            id={key}
-                            name={key}
-                            value={formData[key]}
-                            onChange={(e) => handleInputChange(key, e.target.value)}
-                        />
-                    )}
                 </div>
             ))}
-            <button className="submit-btn" type="submit">Submit</button>
-        </form>
+            {/* disabled={!isFormValid} ${!isFormValid ? 'disabled' : ''}*/}
+            <button className={`submit-btn`} type="submit">
+              Submit
+            </button>        
+          </form>
         </div>
     );
 }

@@ -107,7 +107,7 @@ export default Table;
 
 
 import './table.scss';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store.ts';
@@ -117,16 +117,15 @@ import * as thunks from '../../redux/tables/tableThunks.ts';
 import { BsFillPencilFill, BsFillTrashFill, BsCopy } from 'react-icons/bs';
 import { SpinningCircles } from 'react-loading-icons'
 import { setModal } from '../../redux/tables/tableSlice.ts';
+import useCollection from '../../hooks/useCollection.ts';
 
 function Table() {
     const dispatch = useDispatch<AppDispatch>()
-    const location = useLocation(); 
-    const currLocation = location.pathname;
-    const currType = constants.LINKS_RESOURCES.find(link => link.herf === currLocation)?.type;
-    
+    const currLocation = useLocation().pathname;
+    const currType = useCollection()?.type;
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
-    
+      
     console.log(data)
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));

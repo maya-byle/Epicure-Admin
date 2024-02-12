@@ -56,8 +56,9 @@ const tableSlice = createSlice({
 
       .addCase(thunks.deleteData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
-        state.collectionData = state.collectionData.filter((data) => {
-          return data._id !== action.payload._id;
+        state.collectionData = state.collectionData.map((data) => {
+          if (data._id !== action.payload._id) return data;
+          else return { ...data, status: "deleted" };
         });
       })
       .addCase(thunks.deleteData.rejected, (state) => {

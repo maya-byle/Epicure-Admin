@@ -4,14 +4,11 @@ import './header.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store.ts';
 import { setModal } from '../../redux/tables/tableSlice.ts';
-import { LINKS_RESOURCES } from '../../resources/constants.ts'
-import { useLocation } from 'react-router';
+import useCollection from '../../hooks/useCollection.ts';
 
 function Header() {
-  const location = useLocation(); 
-  const currLocation = location.pathname;
   const dispatch = useDispatch<AppDispatch>() 
-  const link: any = LINKS_RESOURCES.filter((link) => link.herf === currLocation)[0]
+  const collectionName: string|undefined = useCollection()?.name;
   
     const openModal = () => {
       dispatch(setModal({}));
@@ -19,7 +16,7 @@ function Header() {
   
     return (
       <div className="header-container">
-        <h1>{link? link.name : "Header"}</h1>
+        <h1>{collectionName? collectionName : "Header"}</h1>
         <BsDatabaseFillAdd size={30} className='add-button' onClick={openModal} />
       </div>
     );

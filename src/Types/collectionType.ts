@@ -3,7 +3,7 @@ export type IChef = {
   name: string;
   description: string[];
   image: string;
-  restaurant: string[];
+  restaurants: { title: string }[];
   status: string;
 };
 

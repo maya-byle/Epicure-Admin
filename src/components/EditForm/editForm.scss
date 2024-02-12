@@ -26,7 +26,9 @@
         font-weight: bold;
       }
   
-      input, button {
+      input {
+        background-color: white;
+        color: gray;
         width: 230px;
         height: 30px;
         padding: 8px;
@@ -35,19 +37,30 @@
         border-radius: 4px;
         margin-left: 10px;
         justify-self: flex-end;
+        font-size:small;
+        text-align:'left';
+      }
+      input[type='file']
+      {
+          text-indent: -999em;
+          cursor: pointer;
       }
     }
   
       .submit-btn {
-        background-color: #007bff;
+        background-color: rgb(27, 40, 63);;
         color: #fff;
         padding: 10px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-  
-        &:hover {
-          background-color: #0056b3;
+
+        &.disabled {
+          cursor:auto;
+          background-color: rgb(179, 179, 179);
+        }
+        .submit-btn:hover {
+          background-color:  #7b839a;
         }
       }
     }
