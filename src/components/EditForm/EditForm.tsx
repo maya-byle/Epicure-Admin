@@ -28,7 +28,7 @@ function EditForm() {
       setFormData({ ...formData, [key]: value });
     },[formData])
 
-    function handleOnUpload(error, result, widget) {
+    const handleOnUpload = (error, result, widget) => {
       if ( error ) {
         updateError(error);
         widget.close({

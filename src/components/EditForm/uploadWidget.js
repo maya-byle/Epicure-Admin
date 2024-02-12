@@ -22,7 +22,7 @@ const UploadWidget = ({ children, onUpload }) => {
   }, []);
 
 
-  function createWidget() {
+  const createWidget = () => {
     const cloudName = 'dhavutxxt';
     const uploadPreset = 'epicure-admin';
 
@@ -59,30 +59,3 @@ const UploadWidget = ({ children, onUpload }) => {
 }
 
 export default UploadWidget;
-
-// import { useEffect, useRef } from "react";
-
-// const UploadWidget = ({ onSuccess }) => {
-//     const cloudinaryRef = useRef();
-//     const widgetRef = useRef();
-
-//     useEffect(() => {
-//         cloudinaryRef.current = window.cloudinary;
-//         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-//             cloudName: 'dhavutxxt',
-//             uploadPreset: 'epicure-admin'
-//         }, function(error, result) {
-//             if (!error && result && result.event === "success") {
-//                 onSuccess(result.info.url);
-//             }
-//         })
-//     }, [onSuccess])
-
-//     return (
-//         <button type="button" onClick={() => widgetRef.current.open()}>
-//             Upload
-//         </button>
-//     )
-// }
-
-// export default UploadWidget;

@@ -39,7 +39,7 @@ const tableSlice = createSlice({
       .addCase(thunks.updateData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
         state.collectionData = state.collectionData.map((chef) => {
-          return chef._id !== action.payload.data_id ? chef : action.payload;
+          return chef._id !== action.payload._id ? chef : action.payload;
         });
       })
       .addCase(thunks.updateData.rejected, (state) => {
