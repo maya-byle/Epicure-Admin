@@ -11,10 +11,11 @@
     gap: 2rem;
     
     .sidebar_title {
-        color: gray;
+        color: white;
         text-align: left;
         font-weight: 500;
         font-size: x-large;
+        text-transform: uppercase;
     }
     .links {
         display: flex;

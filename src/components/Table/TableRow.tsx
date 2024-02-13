@@ -20,7 +20,7 @@ function TableRow({ item }) {
     }
 
     return (
-        <tr key={item._id}>
+        <tr key={item._id} className={selectedDocument === changedItem._id ? 'edit-mode' : ''}>
             {selectedDocument !== changedItem._id ? (
                 <>
                     {Object.keys(currType).map((key) => (
@@ -79,7 +79,7 @@ function TableRow({ item }) {
                             )}
                         </td>
                     ))}
-                    <td className='edit'>
+                    <td>
                         <span className="actions">
                             <BsSave color='wheat' onClick={() => handleSave(changedItem)} />
                             <BsX color='wheat' onClick={() => resetChanges()} />
