@@ -1,11 +1,10 @@
 .table-container {
     background-color: inherit;
-    display: flex;
-    align-items: flex-start;
-    height: 100%;
     width: 100%;
     overflow-x: auto;
     margin-top: 20px;
+    height: 80%;
+    overflow-y: auto;
 
     .table {
         background-color: rgb(27, 40, 63);
@@ -63,7 +62,6 @@
 
         .label {
             border-radius: 3px;
-            padding: 0.3rem;
           
             &.draft {
                 color: #777;

@@ -4,7 +4,7 @@ import './header.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store.ts';
 import { setModal } from '../../redux/tables/tableSlice.ts';
-import useCollection from '../../hooks/useCollection.ts';
+import useCollection from '../../hooks/useCollection.tsx';
 
 function Header() {
   const dispatch = useDispatch<AppDispatch>() 

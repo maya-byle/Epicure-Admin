@@ -1,7 +1,7 @@
 import './editForm.scss';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router';
-import useCollection from '../../hooks/useCollection.ts';
+import useCollection from '../../hooks/useCollection.tsx';
 import { Image } from 'cloudinary-react';
 import UploadWidget from './uploadWidget';
 import { useDispatch } from 'react-redux';
@@ -37,12 +37,13 @@ function EditForm() {
       }
       setImage(result?.info?.secure_url);
       setFormData((prevData) => ({ ...prevData, ['image']: result?.info?.secure_url }));
-
     }
 
     const handleSubmit = async() => {
       dispatch(thunks.addData({ route: currLocation, item: formData }));
     }
+
+    console.log(newFormFields)
 
     return (
         <div className='editForm_container'>

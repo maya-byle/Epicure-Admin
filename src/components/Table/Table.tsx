@@ -6,8 +6,9 @@ import { AppDispatch, RootState } from '../../redux/store.ts';
 import * as constants from '../../resources/constants.ts';
 import * as thunks from '../../redux/tables/tableThunks.ts';
 import { SpinningCircles } from 'react-loading-icons'
-import useCollection from '../../hooks/useCollection.ts';
+import useCollection from '../../hooks/useCollection.tsx';
 import TableRow from './TableRow.tsx';
+import Modal from '../UI/Modal/Modal.tsx';
 
 function Table() {
     const dispatch = useDispatch<AppDispatch>()
@@ -15,7 +16,8 @@ function Table() {
     const currType = useCollection()?.type;
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
-    
+    const modal = useSelector((state: RootState) => state.collection.isModal);
+
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
     },[dispatch])
@@ -46,6 +48,7 @@ function Table() {
                     ))}
                 </tbody>
             </table>
+            {modal && <Modal/>}
         </div>
     );
 };
