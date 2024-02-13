@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import resources from '../../resources/resources.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store.ts';
@@ -12,7 +11,7 @@ import useHandlers from '../../hooks/useHandlers.tsx';
 function TableRow({ item }) {
     const dispatch = useDispatch<AppDispatch>();
     const currType = useCollection()?.type;
-    const currDocument = useSelector((state: RootState) => state.collection.currDocument)
+    const selectedDocument = useSelector((state: RootState) => state.collection.currDocument)
 
     const { changedItem, handleCopy, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item, currType);
 
@@ -22,7 +21,7 @@ function TableRow({ item }) {
 
     return (
         <tr key={item._id}>
-            {currDocument !== changedItem._id ? (
+            {selectedDocument !== changedItem._id ? (
                 <>
                     {Object.keys(currType).map((key) => (
                         <td key={key} className={key === 'status' ? `label ${item.status}` : ''}>
@@ -49,14 +48,13 @@ function TableRow({ item }) {
                 //changed Item Mode
                 <>
                     {Object.keys(currType).map((key) => (
-                        <td key={key} className={key === 'status' ? `label ${changedItem.status}` : ''}>
-                            {currDocument === changedItem._id ? (
+                        <td key={key} className='edit'>
+                            {selectedDocument === changedItem._id ? (
                                 key === 'image' ? (
                                     <img
                                         id={`image_${changedItem._id}`}
                                         src={changedItem[key]}
                                         alt="img"
-                                        style={{ cursor: 'pointer' }}
                                     />
                                 ) : key === 'status' ? (
                                     <select
@@ -81,10 +79,10 @@ function TableRow({ item }) {
                             )}
                         </td>
                     ))}
-                    <td>
+                    <td className='edit'>
                         <span className="actions">
-                            <BsSave onClick={() => handleSave(changedItem)} />
-                            <BsX onClick={() => resetChanges} />
+                            <BsSave color='wheat' onClick={() => handleSave(changedItem)} />
+                            <BsX color='wheat' onClick={() => resetChanges()} />
                         </span>
                     </td>
                 </>

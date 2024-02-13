@@ -7,7 +7,7 @@ interface ITable {
   collectionData: (typeof constants.CHEF_RESOURCES)[];
   status: string;
   isModal: ICollection | undefined;
-  currDocument: number | undefined;
+  currDocument: string | undefined;
 }
 
 const initialState: ITable = {
