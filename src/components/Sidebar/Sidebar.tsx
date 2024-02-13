@@ -1,16 +1,17 @@
 import * as React from 'react';
 import './sidebar.scss';
-import * as resources from '../../resources/resources.ts'
+import * as constants from '../../resources/constants.ts'
+import resources from '../../resources/resources.ts'
 
 function Sidebar() {
-    const links = resources.LINKS_RESOURCES
+    const links = constants.LINKS_RESOURCES
 
     return ( 
         <div className='sidebar'>
             <div className='search-container'>
 
             </div>
-            <header>Collections:</header>
+            <header>{resources.SIDEBAR_TITLE}</header>
             <ul className='links'>
                 {links.map((link) => (
                     <a className='link' key={link.name} href={link.herf}>
