@@ -1,0 +1,31 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 20%;
+    background-color: inherit(220, 212, 145);
+    border-right: 2px solid rgb(27, 40, 63);; /* Set a reasonable border */
+    margin-left: 1rem;
+    gap: 2rem;
+    
+    header {
+        color: gray;
+        text-align: left;
+    }
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: start;
+
+        .link {
+            text-decoration: none;
+            color: white;
+
+            &:hover {
+                background-color: #7b839a;
+                color: rgb(34, 69, 167);
+            }
+        }
+    }
+}
