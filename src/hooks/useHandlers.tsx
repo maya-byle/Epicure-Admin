@@ -6,7 +6,7 @@ import { setDocument } from '../redux/tables/tableSlice.ts';
 import { ICollection } from '../types/collectionType.ts';
 import { AppDispatch, RootState } from '../redux/store.ts';
 
-function useHandlers(item: ICollection, currType) {
+function useHandlers(item: ICollection) {
     const dispatch = useDispatch<AppDispatch>();
     const currLocation = useLocation().pathname;
     const currDocument = useSelector((state: RootState) => state.collection.currDocument);

@@ -8,6 +8,8 @@ interface ITable {
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
+  user: any;
+  error: string | undefined;
 }
 
 const initialState: ITable = {
@@ -15,6 +17,8 @@ const initialState: ITable = {
   status: constants.STATUS_CODE.IDLE,
   isModal: undefined,
   currDocument: undefined,
+  user: {},
+  error: undefined,
 };
 
 const tableSlice = createSlice({
@@ -64,6 +68,18 @@ const tableSlice = createSlice({
         });
       })
       .addCase(thunks.deleteData.rejected, (state) => {
+        state.status = "rejected";
+      })
+
+      .addCase(thunks.login.pending, (state, action) => {
+        state.status = constants.STATUS_CODE.LOADING;
+      })
+      .addCase(thunks.login.fulfilled, (state, action) => {
+        state.status = constants.STATUS_CODE.IDLE;
+        state.user = action.payload;
+      })
+      .addCase(thunks.login.rejected, (state, action) => {
+        state.error = action.error.message;
         state.status = "rejected";
       });
   },

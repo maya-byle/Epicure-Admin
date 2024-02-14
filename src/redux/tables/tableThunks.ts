@@ -4,7 +4,7 @@ import { ApiResponse } from "../../Types/collectionType.ts";
 import { transformData } from "../../utils/redux-utils.ts";
 
 export const fetchData = createAsyncThunk(
-  `/api/v1/get`,
+  `/admin/v1/get`,
   async (route: string): Promise<any> => {
     try {
       const response = await HttpClientService.get(route);
@@ -18,7 +18,7 @@ export const fetchData = createAsyncThunk(
 );
 
 export const addData = createAsyncThunk(
-  `/api/v1/post`,
+  `/admin/v1/post`,
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.post(route, item);
@@ -32,7 +32,7 @@ export const addData = createAsyncThunk(
 );
 
 export const updateData = createAsyncThunk(
-  `/api/v1/put`,
+  `/admin/v1/put`,
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.put(route, item);
@@ -46,7 +46,7 @@ export const updateData = createAsyncThunk(
 );
 
 export const deleteData = createAsyncThunk(
-  `/api/v1`,
+  `/admin/v1`,
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.delete(route, item);
@@ -55,6 +55,18 @@ export const deleteData = createAsyncThunk(
     } catch (error) {
       console.log(error);
       return error;
+    }
+  }
+);
+
+export const login = createAsyncThunk(
+  `/admin/v1/login`,
+  async ({ route, item }: { route: string; item: any }): Promise<any> => {
+    try {
+      const response = await HttpClientService.post(route, item);
+      return response.data;
+    } catch (error) {
+      throw error;
     }
   }
 );
