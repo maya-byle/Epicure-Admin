@@ -24,7 +24,7 @@ function Table() {
 
 
     if (!currType || loadingStatus === constants.STATUS_CODE.REJECTED) {
-        return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
+        return ;
     }
 
     if (loadingStatus === constants.STATUS_CODE.LOADING) {

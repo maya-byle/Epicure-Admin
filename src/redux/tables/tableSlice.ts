@@ -8,7 +8,6 @@ interface ITable {
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
-  user: any;
   error: string | undefined;
 }
 
@@ -17,7 +16,6 @@ const initialState: ITable = {
   status: constants.STATUS_CODE.IDLE,
   isModal: undefined,
   currDocument: undefined,
-  user: {},
   error: undefined,
 };
 
@@ -49,7 +47,7 @@ const tableSlice = createSlice({
         });
       })
       .addCase(thunks.updateData.rejected, (state) => {
-        state.status = "rejected";
+        state.status = constants.STATUS_CODE.REJECTED;
       })
 
       .addCase(thunks.addData.fulfilled, (state, action) => {
@@ -57,7 +55,7 @@ const tableSlice = createSlice({
         state.collectionData = state.collectionData.concat(action.payload);
       })
       .addCase(thunks.addData.rejected, (state) => {
-        state.status = "rejected";
+        state.status = constants.STATUS_CODE.REJECTED;
       })
 
       .addCase(thunks.deleteData.fulfilled, (state, action) => {
@@ -68,7 +66,7 @@ const tableSlice = createSlice({
         });
       })
       .addCase(thunks.deleteData.rejected, (state) => {
-        state.status = "rejected";
+        state.status = constants.STATUS_CODE.REJECTED;
       })
 
       .addCase(thunks.login.pending, (state, action) => {
@@ -76,11 +74,12 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.login.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
-        state.user = action.payload;
+        const token = action.payload.token;
+        sessionStorage.setItem("userToken", token);
       })
       .addCase(thunks.login.rejected, (state, action) => {
+        state.status = constants.STATUS_CODE.REJECTED;
         state.error = action.error.message;
-        state.status = "rejected";
       });
   },
 });

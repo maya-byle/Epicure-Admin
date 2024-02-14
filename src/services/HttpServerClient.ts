@@ -3,15 +3,16 @@ import axios, {
   AxiosRequestHeaders,
   AxiosResponse,
 } from "axios";
+import * as constants from "../resources/constants.ts";
 
-// const baseURL = process.env.REACT_APP_SERVER_BASE_URL;
 const baseURL = "http://localhost:3001/admin/v1/";
+const token = sessionStorage.getItem(constants.USERTOKEN);
+const headers = { token: token };
 
 export const HttpClientService = {
   async post<T>(
     url: string,
     data: unknown,
-    headers?: AxiosRequestHeaders,
     options: AxiosRequestConfig = {}
   ): Promise<AxiosResponse<T, any>> {
     return HttpClientService.send<T>({
@@ -35,6 +36,7 @@ export const HttpClientService = {
       baseURL,
       data,
       method: "put",
+      headers: headers,
     });
   },
   async get<T>(
@@ -46,6 +48,7 @@ export const HttpClientService = {
       url,
       baseURL,
       method: "get",
+      headers: headers,
     });
   },
 
@@ -60,6 +63,7 @@ export const HttpClientService = {
       baseURL,
       data,
       method: "delete",
+      headers: headers,
     });
   },
 

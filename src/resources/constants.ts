@@ -61,3 +61,6 @@ export const STATUS_CODE = {
   REJECTED: "rejected",
   LOADING: "loading",
 };
+
+//////////// SESSION TOKEN ////////////
+export const USERTOKEN = "userToken";
