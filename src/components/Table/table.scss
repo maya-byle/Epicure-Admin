@@ -5,7 +5,7 @@
     height: 80%;
     overflow: auto;
     border-radius: 4px;
-
+  
     .table {
         background-color: rgb(27, 40, 63);
         overflow-x: hidden;
@@ -18,7 +18,6 @@
 
         thead {
             color: rgb(92, 89, 132);
-            position: sticky;
 
             th{
                 font-size: 22px;
@@ -55,8 +54,10 @@
         }
 
         tbody tr {
+            height: 50px;
+            vertical-align: top; 
             &:hover {
-                background-color: #878c9b;
+                background-color: #7b839a; //TODO: add as constant
             }
         }
 
