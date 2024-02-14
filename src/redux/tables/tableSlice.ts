@@ -4,7 +4,7 @@ import * as thunks from "../tables/tableThunks.ts";
 import { ICollection } from "../../Types/collectionType.ts";
 
 interface ITable {
-  collectionData: (typeof constants.CHEF_RESOURCES)[];
+  collectionData: ICollection[];
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
@@ -37,18 +37,6 @@ const tableSlice = createSlice({
         state.status = constants.STATUS_CODE.IDLE;
         state.collectionData = action.payload;
       })
-      // .addCase(thunks.fetchData.fulfilled, (state, action) => {
-      //   state.status = constants.STATUS_CODE.IDLE;
-      //   state.collectionData = action.payload.map((item)=>{
-      //     const obj = {}
-      //     Object.keys(item).forEach((keyItem)=>{
-      //       obj[keyItem]=  isObj? item[key].name :
-
-      //     })
-      //     return
-      //   });
-
-      // })
 
       .addCase(thunks.updateData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;

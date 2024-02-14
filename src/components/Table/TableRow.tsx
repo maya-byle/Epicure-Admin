@@ -12,7 +12,6 @@ function TableRow({ item }) {
     const dispatch = useDispatch<AppDispatch>();
     const currType = useCollection()?.type;
     const selectedDocument = useSelector((state: RootState) => state.collection.currDocument)
-
     const { changedItem, handleCopy, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item, currType);
 
     if (!currType) {

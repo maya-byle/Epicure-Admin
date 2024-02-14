@@ -23,7 +23,6 @@ export const DISH_RESOURCES = {
 export const RESTAURANT_RESOURCES = {
   _id: "id",
   name: "name",
-  description: "description",
   image: "image",
   chef: "chef",
   status: "status",
@@ -34,9 +33,6 @@ export const LINKS_RESOURCES = [
   { herf: "/dishes", name: "Dishes", type: DISH_RESOURCES },
   { herf: "/restaurants", name: "Restaurants", type: RESTAURANT_RESOURCES },
 ];
-
-//////////// SIDEBAR ////////////
-export const SIDEBAR_CONSTANTS = {};
 
 //////////// TABLE ////////////
 export const TABLE_CONSTANTS = {

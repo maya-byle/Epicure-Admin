@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { HttpClientService } from "../../services/HttpServerClient.ts";
 import { ApiResponse } from "../../Types/collectionType.ts";
+import { transformData } from "../../utils/redux-utils.ts";
 
 export const fetchData = createAsyncThunk(
   `/api/v1/get`,
@@ -8,7 +9,7 @@ export const fetchData = createAsyncThunk(
     try {
       const response = await HttpClientService.get(route);
       const responseData = response.data as ApiResponse;
-      return responseData.data;
+      return transformData(responseData.data);
     } catch (error) {
       console.log(error);
       return error;
