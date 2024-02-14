@@ -43,6 +43,7 @@ export const TABLE_CONSTANTS = {
 export const ROUTES = {
   HOME_PAGE: "/",
   CONTENT_PAGE: "/:routeName",
+  LOGIN_PAGE: "/login",
 };
 
 //////////// REDUX ////////////

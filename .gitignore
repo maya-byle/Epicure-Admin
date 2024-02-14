@@ -24,4 +24,4 @@ yarn-error.log*
 
 ##
 .env
-./src/assets
+src/assets/
