@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as constants from "../../resources/constants.ts";
 import * as thunks from "../tables/tableThunks.ts";
 import { ICollection } from "../../Types/collectionType.ts";
+import { redirect } from "react-router";
 
 interface ITable {
   collectionData: ICollection[];

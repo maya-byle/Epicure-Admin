@@ -11,10 +11,9 @@ function Dashboard() {
     const { isAuthenticated } = useAuth();
   
     if (!isAuthenticated) {
-        sessionStorage.deleteItem("userToken");
         navigate("/login");
     }
-    
+
     return ( 
         <div className='content_container'>
             <div className='dashboard_container'>

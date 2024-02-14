@@ -4,12 +4,14 @@ import { BsEye} from 'react-icons/bs';
 import * as thunks from '../../redux/tables/tableThunks.ts';
 import { AppDispatch, RootState } from '../../redux/store.ts';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; 
 
 function Login() {
     const dispatch = useDispatch<AppDispatch>();
     const [item, setItem] = useState({name: "", email: "", password: ""});
     const [showPassword, setShowPassword] = useState(false);
     const error = useSelector((state: RootState) => state.collection.errorStatus);
+    const navigate = useNavigate(); 
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -21,6 +23,7 @@ function Login() {
         const encryptedPassword = btoa(item.password);
         dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
         setItem({name: "", email: "", password: ""});
+        navigate("/")
     };
 
     return ( 
