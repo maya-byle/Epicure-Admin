@@ -1,7 +1,7 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ROUTES } from './resources/constants.ts';
-import Dashboard from './pages/Dashboard.tsx';
+import Dashboard from './pages/Dashboard/Dashboard.tsx';
 import Layout from './pages/Layout/Layout.tsx';
 import Login from './pages/Login/Login.tsx';
 

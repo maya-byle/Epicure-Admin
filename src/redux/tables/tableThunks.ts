@@ -9,11 +9,10 @@ export const fetchData = createAsyncThunk(
     try {
       const response = await HttpClientService.get(route);
       const responseData = response.data as ApiResponse;
-      console.log(responseData);
       return transformData(responseData.data);
     } catch (error) {
-      console.log(error);
-      return error;
+      //TODO: adjust messege to specific case
+      throw { message: "Unauthorized", payload: 401 };
     }
   }
 );
@@ -26,8 +25,7 @@ export const addData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      console.log(error);
-      return error;
+      throw error;
     }
   }
 );
@@ -40,8 +38,7 @@ export const updateData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      console.log(error);
-      return error;
+      throw error;
     }
   }
 );

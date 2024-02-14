@@ -9,7 +9,7 @@ function Login() {
     const dispatch = useDispatch<AppDispatch>();
     const [item, setItem] = useState({name: "", email: "", password: ""});
     const [showPassword, setShowPassword] = useState(false);
-    const error = useSelector((state: RootState) => state.collection.error);
+    const error = useSelector((state: RootState) => state.collection.errorStatus);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

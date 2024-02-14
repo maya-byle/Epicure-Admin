@@ -8,7 +8,7 @@ interface ITable {
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
-  error: string | undefined;
+  errorStatus: string | undefined;
 }
 
 const initialState: ITable = {
@@ -16,7 +16,7 @@ const initialState: ITable = {
   status: constants.STATUS_CODE.IDLE,
   isModal: undefined,
   currDocument: undefined,
-  error: undefined,
+  errorStatus: undefined,
 };
 
 const tableSlice = createSlice({
@@ -39,6 +39,10 @@ const tableSlice = createSlice({
         state.status = constants.STATUS_CODE.IDLE;
         state.collectionData = action.payload;
       })
+      .addCase(thunks.fetchData.rejected, (state, action) => {
+        state.status = constants.STATUS_CODE.REJECTED;
+        state.errorStatus = action.error.message;
+      })
 
       .addCase(thunks.updateData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
@@ -46,16 +50,18 @@ const tableSlice = createSlice({
           return chef._id !== action.payload._id ? chef : action.payload;
         });
       })
-      .addCase(thunks.updateData.rejected, (state) => {
+      .addCase(thunks.updateData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
+        state.errorStatus = action.error.message;
       })
 
       .addCase(thunks.addData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
         state.collectionData = state.collectionData.concat(action.payload);
       })
-      .addCase(thunks.addData.rejected, (state) => {
+      .addCase(thunks.addData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
+        state.errorStatus = action.error.message;
       })
 
       .addCase(thunks.deleteData.fulfilled, (state, action) => {
@@ -65,8 +71,9 @@ const tableSlice = createSlice({
           else return { ...data, status: "deleted" };
         });
       })
-      .addCase(thunks.deleteData.rejected, (state) => {
+      .addCase(thunks.deleteData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
+        state.errorStatus = action.error.message;
       })
 
       .addCase(thunks.login.pending, (state, action) => {
@@ -79,7 +86,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.login.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.error = action.error.message;
+        state.errorStatus = action.error.message;
       });
   },
 });
