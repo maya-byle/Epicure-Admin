@@ -9,6 +9,7 @@ export const fetchData = createAsyncThunk(
     try {
       const response = await HttpClientService.get(route);
       const responseData = response.data as ApiResponse;
+      console.log(responseData);
       return transformData(responseData.data);
     } catch (error) {
       console.log(error);

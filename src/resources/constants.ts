@@ -28,10 +28,19 @@ export const RESTAURANT_RESOURCES = {
   status: "status",
 };
 
+export const USER_RESOURCES = {
+  _id: "id",
+  name: "name",
+  email: "email",
+  role: "role",
+  status: "status",
+};
+
 export const LINKS_RESOURCES = [
   { herf: "/chefs", name: "Chefs", type: CHEF_RESOURCES },
   { herf: "/dishes", name: "Dishes", type: DISH_RESOURCES },
   { herf: "/restaurants", name: "Restaurants", type: RESTAURANT_RESOURCES },
+  { herf: "/users", name: "Users", type: USER_RESOURCES },
 ];
 
 //////////// TABLE ////////////
