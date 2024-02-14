@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 // const baseURL = process.env.REACT_APP_SERVER_BASE_URL;
-const baseURL = "http://localhost:3001/api/v1/";
+const baseURL = "http://localhost:3001/admin/v1/";
 
 export const HttpClientService = {
   async post<T>(

@@ -1,0 +1,68 @@
+.editForm_container {
+    background-color: rgb(94, 101, 127);
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: white;
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .form_row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+  
+      input, button {
+        background-color: white;
+        color: gray;
+        width: 230px;
+        height: 30px;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 10px;
+        justify-self: flex-end;
+        font-size:small;
+        text-align:'left';
+        overflow-x: auto;
+      }
+      input[type='file']
+      {
+          cursor: pointer;
+      }
+    }
+  
+      .submit-btn {
+        background-color: rgb(27, 40, 63);;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &.disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+          background-color: rgb(179, 179, 179);
+        }
+        .submit-btn:hover {
+          background-color:  #7b839a;
+        }
+      }
+    }
+  }

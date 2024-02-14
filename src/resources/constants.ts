@@ -22,10 +22,10 @@ export const DISH_RESOURCES = {
 
 export const RESTAURANT_RESOURCES = {
   _id: "id",
-  image: "image",
   name: "name",
   description: "description",
-  chef: "chefName",
+  image: "image",
+  chef: "chef",
   status: "status",
 };
 
@@ -47,4 +47,11 @@ export const TABLE_CONSTANTS = {
 export const ROUTES = {
   HOME_PAGE: "/",
   CONTENT_PAGE: "/:routeName",
+};
+
+//////////// REDUX ////////////
+export const STATUS_CODE = {
+  IDLE: "idle",
+  REJECTED: "rejected",
+  LOADING: "loading",
 };

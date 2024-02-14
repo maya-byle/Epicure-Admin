@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { HttpClientService } from "../services/HttpServerClient.ts";
-
-//TODO: fix promises types
+import { HttpClientService } from "../../services/HttpServerClient.ts";
+import { ApiResponse } from "../../Types/collectionType.ts";
 
 export const fetchData = createAsyncThunk(
   `/api/v1/get`,
   async (route: string): Promise<any> => {
     try {
       const response = await HttpClientService.get(route);
-      return response.data; //returns it straight to the action.payload
+      const responseData = response.data as ApiResponse;
+      return responseData.data;
     } catch (error) {
       console.log(error);
       return error;
@@ -21,7 +21,8 @@ export const addData = createAsyncThunk(
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.post(route, item);
-      return response.data;
+      const responseData = response.data as ApiResponse;
+      return responseData.data;
     } catch (error) {
       console.log(error);
       return error;
@@ -34,8 +35,8 @@ export const updateData = createAsyncThunk(
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.put(route, item);
-      console.log(response.data);
-      return response.data;
+      const responseData = response.data as ApiResponse;
+      return responseData.data;
     } catch (error) {
       console.log(error);
       return error;
@@ -48,7 +49,8 @@ export const deleteData = createAsyncThunk(
   async ({ route, item }: { route: string; item: any }): Promise<any> => {
     try {
       const response = await HttpClientService.delete(route, item);
-      return response.data;
+      const responseData = response.data as ApiResponse;
+      return responseData.data;
     } catch (error) {
       console.log(error);
       return error;

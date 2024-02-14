@@ -1,42 +1,56 @@
 .table-container {
     background-color: inherit;
-    width: 85vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0 50px;
-
+    overflow-x: auto;
+    margin-top: 20px;
+    height: 80%;
+    overflow: auto;
+    border-radius: 4px;
+  
     .table {
-        background-color: rgb(27, 40, 63); //TODO: add as constant
-        // display: block;
-        overflow: hidden;
+        background-color: rgb(27, 40, 63);
+        overflow-x: hidden;
         border-collapse: collapse;
-        table-layout: auto;
         border-radius: 10px;
         white-space: nowrap;
         width: 100%;
-        height: 90%;
-        margin: auto;
-
-        // tr::after {
-        //     display: block;
-        //     border-bottom: 1px solid #ccc; 
-        //     margin: 5px 0; 
-        // }
+        min-width: 800px; 
+        max-width: 100%;
 
         thead {
-            color: rgb(92, 89, 132); //TODO: add as constant
-            width: 100%;
-            // text-align: left;
+            color: rgb(92, 89, 132);
+
+            th{
+                font-size: 22px;
+            }
         }
 
         td {
+            font-size: medium;
             color: white;
             padding: 0.8rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            max-width: 170px; 
+            min-width: 80px;
+            overflow-x: auto;
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+            &::-webkit-scrollbar {
+                display: none; 
+            }
+            
+            img {
+                border-radius: 50%;
+                width: 50px; 
+                height: 50px; 
+                object-fit: cover;
+            }
+
+            input {
+                background-color: transparent;
+                border: none;
+                color: white;
+                height: inherit;
+                text-align: center;
+            }
         }
 
         tbody tr {
@@ -49,8 +63,6 @@
 
         .label {
             border-radius: 3px;
-            padding: 0.3rem;
-            cursor: pointer;
           
             &.draft {
                 color: #777;
@@ -58,8 +70,8 @@
             }
           
             &.active {
-                color: #42a942;
-                border-color: #42a942;
+                color: #7bbc7b;
+                border-color: #7bbc7b;
             }
           
             &.deleted {
@@ -75,6 +87,15 @@
             svg {
                 cursor: pointer;
             }
-          }
+        }
+
+        .edit {
+            img, select, input{
+                cursor: pointer;
+                color: wheat;
+                background-color: inherit;
+                border-color: transparent;
+            }
+        }
     }
 }

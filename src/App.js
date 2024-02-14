@@ -1,17 +1,8 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from './pages/Dashboard.tsx';
-import Sidebar from './components/Sidebar/Sidebar.tsx';
 import { ROUTES } from './resources/constants.ts';
-
-const Layout = () => {
-  return (
-    <>
-      <Sidebar />
-      <Outlet />
-    </>
-  );
-};
+import Layout from './pages/Layout/Layout.tsx';
 
 const router = createBrowserRouter([
   { path: ROUTES.HOME_PAGE, element: <Layout />,

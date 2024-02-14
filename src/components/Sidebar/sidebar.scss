@@ -2,25 +2,38 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 20%;
+    min-width: 10rem;
+    max-width: 20%;
     background-color: inherit(220, 212, 145);
     border-right: 2px solid rgb(27, 40, 63);
     margin-left: 1rem;
+    margin-right: 2rem;
     gap: 2rem;
     
-    header {
-        color: gray;
+    .sidebar_title {
+        color: white;
         text-align: left;
+        font-weight: 500;
+        font-size: x-large;
+        text-transform: uppercase;
     }
     .links {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1em;
         text-align: start;
 
         .link {
-            text-decoration: none;
             color: white;
+            width: 80%;
+            padding: 8px;
+            border-radius: 7px;
+            transition: background-color 1s ease;
+
+            &.current {
+                background-color: #7b839a;
+                // color: rgb(34, 69, 167);;
+            }
 
             &:hover {
                 background-color: #7b839a;
