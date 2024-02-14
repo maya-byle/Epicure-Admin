@@ -1,7 +1,6 @@
 import { ICollection } from "../Types/collectionType";
 
 export const transformData = (data: ICollection[]) => {
-  console.log(data);
   if (data) {
     return data.map((document: ICollection) => {
       const transformedDocument: any = {};

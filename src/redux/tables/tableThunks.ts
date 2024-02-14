@@ -25,7 +25,7 @@ export const addData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      throw error;
+      throw { message: "Unauthorized", payload: 401 };
     }
   }
 );
@@ -38,7 +38,7 @@ export const updateData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      throw error;
+      throw { message: "Unauthorized", payload: 401 };
     }
   }
 );
@@ -52,7 +52,7 @@ export const deleteData = createAsyncThunk(
       return responseData.data;
     } catch (error) {
       console.log(error);
-      return error;
+      throw { message: "Unauthorized", payload: 401 };
     }
   }
 );
