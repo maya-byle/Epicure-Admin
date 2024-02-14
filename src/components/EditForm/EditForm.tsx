@@ -66,7 +66,7 @@ function EditForm() {
                             open();
                           }
                           return (
-                            !image ? <button onClick={handleOnClick} style={{textAlign:'left', color:'grey', backgroundColor:'white', fontSize:'small', cursor: 'pointer'}}>
+                            !image ? <button className='upload-btn' onClick={handleOnClick}>
                               {resources.UPLOAD}
                             </button> :
                             <button >{image}</button>
