@@ -9,6 +9,7 @@ export type IChef = {
   description: string[];
   image: string;
   restaurants: IDocumentPopulate[];
+  isChefOfTheWeek: boolean;
   status: string;
 };
 
@@ -28,6 +29,7 @@ export type IRestaurant = {
   name: string;
   image: string;
   chef: IDocumentPopulate;
+  rank: number;
   status: string;
 };
 

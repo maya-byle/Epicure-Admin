@@ -25,6 +25,7 @@ export const RESTAURANT_RESOURCES = {
   name: "name",
   image: "image",
   chef: "chef",
+  rank: "rank",
   status: "status",
 };
 

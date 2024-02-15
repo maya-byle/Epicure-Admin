@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import Sidebar from '../../components/Sidebar/Sidebar.tsx'
 import useAuth from '../../hooks/useAuth.tsx';
 import { useNavigate } from 'react-router';
+import * as constants from '../../resources/constants.ts';
 
 function Layout() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Layout() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      navigate(constants.ROUTES.LOGIN_PAGE);
     }
   }, [isAuthenticated, navigate]);
 
