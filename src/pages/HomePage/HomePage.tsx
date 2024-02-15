@@ -1,4 +1,4 @@
-import './layout.scss';
+import './homepage.scss';
 import React, { useEffect } from "react";
 import { Outlet } from "react-router";
 import Sidebar from '../../components/Sidebar/Sidebar.tsx'
@@ -11,7 +11,7 @@ function Layout() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log("herrrr")
+      console.log(isAuthenticated)
       navigate("/login");
     }
   }, [isAuthenticated, navigate]);

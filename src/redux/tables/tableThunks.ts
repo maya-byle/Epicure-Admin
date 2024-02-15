@@ -51,7 +51,6 @@ export const deleteData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

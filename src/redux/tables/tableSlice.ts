@@ -9,7 +9,7 @@ interface ITable {
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
-  errorStatus: string | undefined;
+  codeStatus: string | undefined;
 }
 
 const initialState: ITable = {
@@ -17,7 +17,7 @@ const initialState: ITable = {
   status: constants.STATUS_CODE.IDLE,
   isModal: undefined,
   currDocument: undefined,
-  errorStatus: undefined,
+  codeStatus: undefined,
 };
 
 const tableSlice = createSlice({
@@ -42,7 +42,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.fetchData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.errorStatus = action.error.message;
+        state.codeStatus = action.error.message;
       })
 
       .addCase(thunks.updateData.fulfilled, (state, action) => {
@@ -53,7 +53,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.updateData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.errorStatus = action.error.message;
+        state.codeStatus = action.error.message;
       })
 
       .addCase(thunks.addData.fulfilled, (state, action) => {
@@ -62,7 +62,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.addData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.errorStatus = action.error.message;
+        state.codeStatus = action.error.message;
       })
 
       .addCase(thunks.deleteData.fulfilled, (state, action) => {
@@ -74,7 +74,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.deleteData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.errorStatus = action.error.message;
+        state.codeStatus = action.error.message;
       })
 
       .addCase(thunks.login.pending, (state, action) => {
@@ -87,7 +87,7 @@ const tableSlice = createSlice({
       })
       .addCase(thunks.login.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
-        state.errorStatus = action.error.message;
+        state.codeStatus = action.error.message;
       });
   },
 });

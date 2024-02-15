@@ -10,18 +10,18 @@ function Login() {
     const dispatch = useDispatch<AppDispatch>();
     const [item, setItem] = useState({name: "", email: "", password: ""});
     const [showPassword, setShowPassword] = useState(false);
-    const error = useSelector((state: RootState) => state.collection.errorStatus);
+    const error = useSelector((state: RootState) => state.collection.codeStatus);
     const navigate = useNavigate(); 
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const route = `/users/login`;
         const encryptedPassword = btoa(item.password);
-        dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
+        await dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
         setItem({name: "", email: "", password: ""});
         navigate("/")
     };
