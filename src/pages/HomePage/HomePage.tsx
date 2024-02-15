@@ -11,7 +11,6 @@ function Layout() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      console.log(isAuthenticated)
       navigate("/login");
     }
   }, [isAuthenticated, navigate]);

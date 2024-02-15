@@ -1,8 +1,4 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosRequestHeaders,
-  AxiosResponse,
-} from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import * as constants from "../resources/constants.ts";
 
 const baseURL = "http://localhost:3001/admin/v1/";

@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header.tsx';
 import { Fade } from 'react-awesome-reveal';
 
 function Dashboard() {
+
     return ( 
         <div className='content_container'>
             <div className='dashboard_container'>

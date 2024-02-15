@@ -43,8 +43,6 @@ function EditForm() {
       dispatch(thunks.addData({ route: currLocation, item: formData }));
     }
 
-    console.log(newFormFields)
-
     return (
         <div className='editForm_container'>
             <h2>Create Document</h2>
