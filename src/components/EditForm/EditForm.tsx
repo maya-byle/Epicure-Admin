@@ -15,7 +15,7 @@ function EditForm() {
     const documentType = useCollection()?.type
     const newFormFields = {};
     for (const key in documentType) {
-      if(key !== "_id" && key !=="status")
+      if(key !== "_id" && key !=="status" && key !=="restaurants")
         newFormFields[documentType[key]] = "";    
     }
     const dispatch = useDispatch<AppDispatch>()

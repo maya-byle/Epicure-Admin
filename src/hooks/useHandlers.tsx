@@ -36,11 +36,6 @@ function useHandlers(item: ICollection) {
         }
     }, [currDocument, changedItem]);
 
-    const handleCopy = async (toCopy) => {
-        const { _id, ...itemWithoutId } = toCopy;
-        dispatch(thunks.addData({ route: currLocation, item: itemWithoutId }));
-    };
-
     const handleSave = async (toSave) => {
         const { _id, ...itemWithoutId } = toSave;
         dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
@@ -64,7 +59,6 @@ function useHandlers(item: ICollection) {
 
     return {
         changedItem,
-        handleCopy,
         handleSave,
         handleDelete,
         handleChange,

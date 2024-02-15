@@ -12,7 +12,7 @@ function TableRow({ item }) {
     const dispatch = useDispatch<AppDispatch>();
     const currType = useCollection()?.type;
     const selectedDocument = useSelector((state: RootState) => state.collection.currDocument)
-    const { changedItem, handleCopy, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item, currType);
+    const { changedItem, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item);
 
     if (!currType) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
@@ -38,7 +38,6 @@ function TableRow({ item }) {
                     <td>
                         <span className="actions">
                             <BsFillPencilFill onClick={() => dispatch(setDocument(item._id))} />
-                            <BsCopy onClick={() => handleCopy(item)} />
                             <BsFillTrashFill onClick={() => handleDelete(item)} />
                         </span>
                     </td>
@@ -65,7 +64,9 @@ function TableRow({ item }) {
                                         <option value="active">{resources.ACTIVE}</option>
                                         <option value="deleted">{resources.DELETED}</option>
                                     </select>
-                                ) : (
+                                ) : key === 'restaurants' ? <>
+                                    {changedItem[key]}
+                                </> : (
                                     <input
                                         className=""
                                         type="text"
