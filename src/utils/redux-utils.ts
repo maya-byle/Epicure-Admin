@@ -1,4 +1,5 @@
 import { ICollection } from "../Types/collectionType";
+import { DISH_TAGS } from "../resources/constants.ts";
 
 export const transformData = (data: ICollection[]) => {
   if (data) {
@@ -33,14 +34,14 @@ export const transformData = (data: ICollection[]) => {
 const setTags = (tags: string[]) => {
   let tagsString = "";
   tags.forEach((tag) => {
-    if (tag.includes("spicy")) {
-      tagsString += "spicy ";
+    if (tag.includes(DISH_TAGS.SPICY)) {
+      tagsString += DISH_TAGS.SPICY;
     }
-    if (tag.includes("vegan")) {
-      tagsString += "vegan ";
+    if (tag.includes(DISH_TAGS.VEGAN)) {
+      tagsString += DISH_TAGS.VEGAN;
     }
-    if (tag.includes("vegetarian")) {
-      tagsString += "vegetarian ";
+    if (tag.includes(DISH_TAGS.VEGETARIAN)) {
+      tagsString += DISH_TAGS.VEGETARIAN;
     }
   });
   return tagsString.trim();

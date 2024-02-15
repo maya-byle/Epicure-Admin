@@ -63,5 +63,11 @@ export const STATUS_CODE = {
   LOADING: "loading",
 };
 
+export const DISH_TAGS = {
+  SPICY: "Spicy",
+  VEGAN: "Vegan",
+  VEGETARIAN: "Vegetarian",
+};
+
 //////////// SESSION TOKEN ////////////
 export const USERTOKEN = "userToken";

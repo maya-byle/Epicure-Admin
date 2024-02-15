@@ -3,6 +3,7 @@ import './sidebar.scss';
 import * as constants from '../../resources/constants.ts';
 import resources from '../../resources/resources.ts';
 import { useNavigate } from 'react-router-dom'; 
+import { FiLogOut } from 'react-icons/fi';
 
 function Sidebar() {
     const links = constants.LINKS_RESOURCES;
@@ -28,7 +29,8 @@ function Sidebar() {
                     </a>
                 ))}
             </ul>
-            <button onClick={logout}>Logout</button>
+            <div className='logout-btn' onClick={logout}>
+                <FiLogOut color='white' size={20} />    Logout</div>
         </div>
      );
 }

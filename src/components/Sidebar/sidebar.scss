@@ -32,7 +32,6 @@
 
             &.current {
                 background-color: #7b839a;
-                // color: rgb(34, 69, 167);;
             }
 
             &:hover {
@@ -41,5 +40,13 @@
                 color: rgb(34, 69, 167);
             }
         }
+    }
+
+    .logout-btn {
+        position: absolute;
+        cursor: pointer;
+        bottom: 20px;
+        left: 20px;
+        color: white;
     }
 }
