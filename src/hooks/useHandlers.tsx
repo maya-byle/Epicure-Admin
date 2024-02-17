@@ -45,7 +45,7 @@ function useHandlers(item: ICollection) {
 
     const handleDelete = async (toDelete) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
-            dispatch(thunks.deleteData({ route: `${currLocation}/${toDelete._id}`, item: toDelete }));
+            await dispatch(thunks.deleteData({ route: `${currLocation}/${toDelete._id}`, item: toDelete }));
             dispatch(setDocument(undefined));
             resetTable();
         }
