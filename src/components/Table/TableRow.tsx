@@ -20,7 +20,7 @@ function TableRow({ item }) {
     }
 
     return (
-        <tr key={item._id} className={selectedDocument === changedItem._id ? 'edit-mode' : ''}>
+        <tr key={item._id}>
             {selectedDocument !== changedItem._id ? (
                 <>
                     {Object.keys(currType).map((key) => (
@@ -78,6 +78,26 @@ function TableRow({ item }) {
                                             </option>
                                         )}
                                     </select>
+                                ) : key === 'rank' || key === "price" ? (
+                                 <input
+                                     type="number"
+                                     value={changedItem[key]}
+                                     min={1}
+                                     max={key==='rank' ? 5 : undefined}
+                                     onChange={(e) => handleChange(e, key)}
+                                 />
+                                ) : key === 'tags' ? (
+                                    <select
+                                        id={key}
+                                        name={key}
+                                        value={changedItem[key]}
+                                        onChange={(e) => handleChange(e, key)}
+                                    >
+                                        <option value=""></option>
+                                        <option value="Spicy">Spicy</option>
+                                        <option value="Vegan">Vegan</option>
+                                        <option value="Vegetarian">Vegetarian</option>
+                                    </select>
                                 ) : key === 'restaurants' || key === '_id' ? <>
                                     {changedItem[key]}
                                 </> : (
@@ -95,8 +115,8 @@ function TableRow({ item }) {
                     ))}
                     <td>
                         <span className="actions">
-                            <BsSave color='wheat' onClick={() => handleSave(changedItem)} />
-                            <BsX color='wheat' onClick={() => resetChanges()} />
+                            <BsSave onClick={() => handleSave(changedItem)} />
+                            <BsX onClick={() => resetChanges()} />
                         </span>
                     </td>
                 </>

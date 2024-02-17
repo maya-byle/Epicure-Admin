@@ -90,9 +90,18 @@
         .edit {
             img, select, input{
                 cursor: pointer;
-                color: wheat;
+                border: 1px solid white; 
                 background-color: inherit;
-                border-color: transparent;
+                color: white;
+                text-align: center;
+                box-sizing: border-box; 
+                padding: 5px; 
+            }
+
+            select, input {
+                height: 30px; 
+                width: 100%;
+
             }
         }
     }
