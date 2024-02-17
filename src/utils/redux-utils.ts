@@ -6,7 +6,9 @@ export const transformData = (data: ICollection[]) => {
     return data.map((document: ICollection) => {
       const transformedDocument: any = {};
       Object.keys(document).forEach((key) => {
-        if (!document[key]) transformedDocument[key] = "";
+        if (typeof document[key] === "boolean")
+          transformedDocument[key] = document[key].toString();
+        else if (!document[key]) transformedDocument[key] = "";
         else if (key === "tags") {
           transformedDocument[key] = setTags(document[key]);
         } else if (

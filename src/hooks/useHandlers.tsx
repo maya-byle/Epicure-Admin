@@ -40,6 +40,7 @@ function useHandlers(item: ICollection) {
         const { _id, ...itemWithoutId } = toSave;
         dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
         dispatch(setDocument(undefined));
+        dispatch(thunks.fetchData(currLocation));
     };
 
     const handleDelete = async (toDelete) => {

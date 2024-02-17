@@ -17,7 +17,8 @@ function Table() {
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
     const modal = useSelector((state: RootState) => state.collection.isModal);
-
+    const chefOfTheWeek = useSelector((state: RootState) => state.collection.chefOfTheWeek);
+    
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
     },[dispatch])
@@ -33,6 +34,9 @@ function Table() {
 
     return (
         <div className='table-container'>
+            {/* {currLocation===('/chefs') && <p>
+                czsgdg
+            </p>} */}
             <table className='table'>
                 <thead>
                     <tr>

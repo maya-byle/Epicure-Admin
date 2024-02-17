@@ -2,14 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as constants from "../../resources/constants.ts";
 import * as thunks from "../tables/tableThunks.ts";
 import { ICollection } from "../../Types/collectionType.ts";
-import { redirect } from "react-router";
-
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store.ts";
 interface ITable {
   collectionData: ICollection[];
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
   codeStatus: string | undefined;
+  chefOfTheWeek: undefined | string;
 }
 
 const initialState: ITable = {
@@ -18,6 +19,7 @@ const initialState: ITable = {
   isModal: undefined,
   currDocument: undefined,
   codeStatus: undefined,
+  chefOfTheWeek: undefined,
 };
 
 const tableSlice = createSlice({
@@ -29,6 +31,9 @@ const tableSlice = createSlice({
     },
     setDocument(state, action) {
       state.currDocument = action.payload;
+    },
+    setChefOfTheWeek(state, action) {
+      state.chefOfTheWeek = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -92,6 +97,6 @@ const tableSlice = createSlice({
   },
 });
 
-export const { setModal, setDocument } = tableSlice.actions;
+export const { setModal, setDocument, setChefOfTheWeek } = tableSlice.actions;
 
 export default tableSlice.reducer;

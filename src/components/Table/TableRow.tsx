@@ -64,7 +64,7 @@ function TableRow({ item }) {
                                         <option value="active">{resources.ACTIVE}</option>
                                         <option value="deleted">{resources.DELETED}</option>
                                     </select>
-                                ) : key === 'restaurants' ? <>
+                                ) : key === 'restaurants' || key === '_id' ? <>
                                     {changedItem[key]}
                                 </> : (
                                     <input

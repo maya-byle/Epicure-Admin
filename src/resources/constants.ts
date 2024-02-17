@@ -6,6 +6,7 @@ export const CHEF_RESOURCES = {
   description: "description",
   image: "image",
   restaurants: "restaurants",
+  // isChefOfTheWeek: "chef of the week?",
   status: "status",
 };
 
