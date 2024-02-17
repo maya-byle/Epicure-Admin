@@ -21,8 +21,9 @@ function Table() {
     
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
+        if(currLocation === '/restaurants')
+            dispatch(thunks.getChefsList(currLocation+'/chefslist'));
     },[dispatch])
-
 
     if (!currType || loadingStatus === constants.STATUS_CODE.REJECTED) {
         return ;
@@ -34,9 +35,6 @@ function Table() {
 
     return (
         <div className='table-container'>
-            {/* {currLocation===('/chefs') && <p>
-                czsgdg
-            </p>} */}
             <table className='table'>
                 <thead>
                     <tr>
@@ -48,7 +46,7 @@ function Table() {
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <TableRow key={item._id} item={item}/>
+                        <TableRow key={item._id} item={item} />
                     ))}
                 </tbody>
             </table>

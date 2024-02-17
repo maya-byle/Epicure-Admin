@@ -67,3 +67,16 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const getChefsList = createAsyncThunk(
+  `/admin/v1/getChefsList`,
+  async (route: string): Promise<any> => {
+    try {
+      const response = await HttpClientService.get(route);
+      const responseData = response.data as ApiResponse;
+      return responseData.data;
+    } catch (error) {
+      throw { message: "Unauthorized", payload: 401 };
+    }
+  }
+);

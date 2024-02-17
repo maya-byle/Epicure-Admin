@@ -38,14 +38,16 @@ function useHandlers(item: ICollection) {
 
     const handleSave = async (toSave) => {
         const { _id, ...itemWithoutId } = toSave;
-        dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
+        await dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
         dispatch(setDocument(undefined));
-        dispatch(thunks.fetchData(currLocation));
+        resetTable();
     };
 
     const handleDelete = async (toDelete) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             dispatch(thunks.deleteData({ route: `${currLocation}/${toDelete._id}`, item: toDelete }));
+            dispatch(setDocument(undefined));
+            resetTable();
         }
     };
 
@@ -57,6 +59,10 @@ function useHandlers(item: ICollection) {
         setItem({ ...item });
         dispatch(setDocument(undefined));
     };
+    
+    const resetTable = async() => {
+        await dispatch(thunks.fetchData(currLocation));
+    }
 
     return {
         changedItem,

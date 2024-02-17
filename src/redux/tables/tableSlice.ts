@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as constants from "../../resources/constants.ts";
 import * as thunks from "../tables/tableThunks.ts";
 import { ICollection } from "../../Types/collectionType.ts";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../redux/store.ts";
+
 interface ITable {
   collectionData: ICollection[];
   status: string;
@@ -11,6 +10,7 @@ interface ITable {
   currDocument: string | undefined;
   codeStatus: string | undefined;
   chefOfTheWeek: undefined | string;
+  chefs: ICollection[];
 }
 
 const initialState: ITable = {
@@ -20,6 +20,7 @@ const initialState: ITable = {
   currDocument: undefined,
   codeStatus: undefined,
   chefOfTheWeek: undefined,
+  chefs: [],
 };
 
 const tableSlice = createSlice({
@@ -93,6 +94,11 @@ const tableSlice = createSlice({
       .addCase(thunks.login.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
         state.codeStatus = action.error.message;
+      })
+
+      .addCase(thunks.getChefsList.fulfilled, (state, action) => {
+        state.status = constants.STATUS_CODE.IDLE;
+        state.chefs = action.payload;
       });
   },
 });

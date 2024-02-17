@@ -13,6 +13,7 @@ function TableRow({ item }) {
     const currType = useCollection()?.type;
     const selectedDocument = useSelector((state: RootState) => state.collection.currDocument)
     const { changedItem, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item);
+    const chefsList = useSelector((state: RootState) => state.collection.chefs);
 
     if (!currType) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
@@ -56,13 +57,26 @@ function TableRow({ item }) {
                                     />
                                 ) : key === 'status' ? (
                                     <select
-                                        id="status"
-                                        name="status"
+                                        id={key}
+                                        name={key}
                                         value={changedItem[key]}
                                         onChange={(e) => handleChange(e, key)}
                                     >
                                         <option value="active">{resources.ACTIVE}</option>
                                         <option value="deleted">{resources.DELETED}</option>
+                                    </select>
+                                ) : key === 'chef' ? (  //In restaurants table
+                                    <select
+                                        id={key}
+                                        name={key}
+                                        value={changedItem[key]}
+                                        onChange={(e) => handleChange(e, key)}
+                                    >
+                                        {chefsList.map((chef) => 
+                                            <option key={chef._id} value={chef.name}>
+                                                {chef.name}
+                                            </option>
+                                        )}
                                     </select>
                                 ) : key === 'restaurants' || key === '_id' ? <>
                                     {changedItem[key]}
