@@ -11,8 +11,7 @@ export const fetchData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return transformData(responseData.data);
     } catch (error) {
-      //TODO: adjust messege to specific case
-      throw { message: "Unauthorized", payload: 401 };
+      throw error.response.data;
     }
   }
 );
@@ -25,7 +24,7 @@ export const addData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      throw error;
+      throw error.response.data;
     }
   }
 );
@@ -38,7 +37,7 @@ export const updateData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      throw error;
+      throw error.response.data;
     }
   }
 );
@@ -51,7 +50,7 @@ export const deleteData = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      return error;
+      throw error.response.data;
     }
   }
 );
@@ -63,7 +62,7 @@ export const login = createAsyncThunk(
       const response = await HttpClientService.post(route, item);
       return response.data;
     } catch (error) {
-      throw error;
+      throw error.response.data;
     }
   }
 );
@@ -76,7 +75,7 @@ export const getChefsList = createAsyncThunk(
       const responseData = response.data as ApiResponse;
       return responseData.data;
     } catch (error) {
-      throw { message: "Unauthorized", payload: 401 };
+      throw error.response.data;
     }
   }
 );
