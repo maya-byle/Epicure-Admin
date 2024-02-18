@@ -17,14 +17,16 @@ function Table() {
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
     const modal = useSelector((state: RootState) => state.collection.isModal);
-
+    const chefOfTheWeek = useSelector((state: RootState) => state.collection.chefOfTheWeek);
+    
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
+        if(currLocation === '/restaurants')
+            dispatch(thunks.getChefsList(currLocation+'/chefslist'));
     },[dispatch])
 
-
     if (!currType || loadingStatus === constants.STATUS_CODE.REJECTED) {
-        return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
+        return ;
     }
 
     if (loadingStatus === constants.STATUS_CODE.LOADING) {
@@ -44,7 +46,7 @@ function Table() {
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <TableRow key={item._id} item={item}/>
+                        <TableRow key={item._id} item={item} />
                     ))}
                 </tbody>
             </table>

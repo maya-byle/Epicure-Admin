@@ -12,15 +12,15 @@ function TableRow({ item }) {
     const dispatch = useDispatch<AppDispatch>();
     const currType = useCollection()?.type;
     const selectedDocument = useSelector((state: RootState) => state.collection.currDocument)
-
-    const { changedItem, handleCopy, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item, currType);
+    const { changedItem, handleSave, handleDelete, handleChange, resetChanges } = useHandlers(item);
+    const chefsList = useSelector((state: RootState) => state.collection.chefs);
 
     if (!currType) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
     }
 
     return (
-        <tr key={item._id} className={selectedDocument === changedItem._id ? 'edit-mode' : ''}>
+        <tr key={item._id}>
             {selectedDocument !== changedItem._id ? (
                 <>
                     {Object.keys(currType).map((key) => (
@@ -39,7 +39,6 @@ function TableRow({ item }) {
                     <td>
                         <span className="actions">
                             <BsFillPencilFill onClick={() => dispatch(setDocument(item._id))} />
-                            <BsCopy onClick={() => handleCopy(item)} />
                             <BsFillTrashFill onClick={() => handleDelete(item)} />
                         </span>
                     </td>
@@ -58,15 +57,50 @@ function TableRow({ item }) {
                                     />
                                 ) : key === 'status' ? (
                                     <select
-                                        id="status"
-                                        name="status"
+                                        id={key}
+                                        name={key}
                                         value={changedItem[key]}
                                         onChange={(e) => handleChange(e, key)}
                                     >
                                         <option value="active">{resources.ACTIVE}</option>
                                         <option value="deleted">{resources.DELETED}</option>
                                     </select>
-                                ) : (
+                                ) : key === 'chef' ? (  //In restaurants table
+                                    <select
+                                        id={key}
+                                        name={key}
+                                        value={changedItem[key]}
+                                        onChange={(e) => handleChange(e, key)}
+                                    >
+                                        {chefsList.map((chef) => 
+                                            <option key={chef._id} value={chef.name}>
+                                                {chef.name}
+                                            </option>
+                                        )}
+                                    </select>
+                                ) : key === 'rank' || key === "price" ? (
+                                 <input
+                                     type="number"
+                                     value={changedItem[key]}
+                                     min={1}
+                                     max={key==='rank' ? 5 : undefined}
+                                     onChange={(e) => handleChange(e, key)}
+                                 />
+                                ) : key === 'tags' ? (
+                                    <select
+                                        id={key}
+                                        name={key}
+                                        value={changedItem[key]}
+                                        onChange={(e) => handleChange(e, key)}
+                                    >
+                                        <option value=""></option>
+                                        <option value="Spicy">Spicy</option>
+                                        <option value="Vegan">Vegan</option>
+                                        <option value="Vegetarian">Vegetarian</option>
+                                    </select>
+                                ) : key === 'restaurants' || key === '_id' ? <>
+                                    {changedItem[key]}
+                                </> : (
                                     <input
                                         className=""
                                         type="text"
@@ -81,8 +115,8 @@ function TableRow({ item }) {
                     ))}
                     <td>
                         <span className="actions">
-                            <BsSave color='wheat' onClick={() => handleSave(changedItem)} />
-                            <BsX color='wheat' onClick={() => resetChanges()} />
+                            <BsSave onClick={() => handleSave(changedItem)} />
+                            <BsX onClick={() => resetChanges()} />
                         </span>
                     </td>
                 </>

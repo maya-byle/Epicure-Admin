@@ -6,7 +6,7 @@ import { setDocument } from '../redux/tables/tableSlice.ts';
 import { ICollection } from '../types/collectionType.ts';
 import { AppDispatch, RootState } from '../redux/store.ts';
 
-function useHandlers(item: ICollection, currType) {
+function useHandlers(item: ICollection) {
     const dispatch = useDispatch<AppDispatch>();
     const currLocation = useLocation().pathname;
     const currDocument = useSelector((state: RootState) => state.collection.currDocument);
@@ -36,20 +36,18 @@ function useHandlers(item: ICollection, currType) {
         }
     }, [currDocument, changedItem]);
 
-    const handleCopy = async (toCopy) => {
-        const { _id, ...itemWithoutId } = toCopy;
-        dispatch(thunks.addData({ route: currLocation, item: itemWithoutId }));
-    };
-
     const handleSave = async (toSave) => {
         const { _id, ...itemWithoutId } = toSave;
-        dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
+        await dispatch(thunks.updateData({ route: `${currLocation}/${toSave._id}`, item: itemWithoutId }));
         dispatch(setDocument(undefined));
+        resetTable();
     };
 
     const handleDelete = async (toDelete) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
-            dispatch(thunks.deleteData({ route: `${currLocation}/${toDelete._id}`, item: toDelete }));
+            await dispatch(thunks.deleteData({ route: `${currLocation}/${toDelete._id}`, item: toDelete }));
+            dispatch(setDocument(undefined));
+            resetTable();
         }
     };
 
@@ -61,10 +59,13 @@ function useHandlers(item: ICollection, currType) {
         setItem({ ...item });
         dispatch(setDocument(undefined));
     };
+    
+    const resetTable = async() => {
+        await dispatch(thunks.fetchData(currLocation));
+    }
 
     return {
         changedItem,
-        handleCopy,
         handleSave,
         handleDelete,
         handleChange,

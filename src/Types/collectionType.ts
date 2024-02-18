@@ -1,18 +1,24 @@
+export type IDocumentPopulate = {
+  _id: string;
+  name: string;
+};
+
 export type IChef = {
   _id: string;
   name: string;
   description: string[];
   image: string;
-  restaurants: { title: string }[];
+  restaurants: IDocumentPopulate[];
+  isChefOfTheWeek: boolean;
   status: string;
 };
 
 export type IDish = {
   _id: string;
   name: string;
-  description: string[];
+  description: string;
   image: string;
-  restaurant: string;
+  restaurant: IDocumentPopulate;
   tags: string[];
   price: number;
   status: string;
@@ -21,15 +27,15 @@ export type IDish = {
 export type IRestaurant = {
   _id: string;
   name: string;
-  description: string;
   image: string;
-  chef: string;
+  chef: IDocumentPopulate;
+  rank: number;
   status: string;
 };
 
 export type ApiResponse = {
   message: string;
-  data: IRestaurant | IChef | IDish;
+  data: IRestaurant[] | IChef[] | IDish[];
 };
 
 export type ICollection = IChef | IDish | IRestaurant;

@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 ##
-.env
-./src/assets
+.env.development
+.env.production
+src/assets/

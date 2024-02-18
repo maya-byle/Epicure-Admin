@@ -12,11 +12,4 @@ const resources = {
   SIDEBAR_TITLE: "Collections:",
 };
 
-// export const ACTIONS_RESOURCES = {
-//   FETCH_DATA: "FETCH_DATA",
-//   ADD_DATA: "ADD_DATA",
-//   UPDATE_DATA: "UPDATE_DATA",
-//   DELETE_DATA: "DELETE_DATA",
-// };
-
 export default resources;
