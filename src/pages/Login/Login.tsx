@@ -5,16 +5,19 @@ import * as thunks from '../../redux/tables/tableThunks.ts';
 import { AppDispatch, RootState } from '../../redux/store.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; 
+import { setName, setEmail, setPassword, setShowPassword, cleanUser } from '../../redux/tables/loginSlice.ts';
 
 function Login() {
     const dispatch = useDispatch<AppDispatch>();
-    const [item, setItem] = useState({name: "", email: "", password: ""});
-    const [showPassword, setShowPassword] = useState(false);
+    // const [item, setItem] = useState({name: "", email: "", password: ""});
+    // const [showPassword, setShowPassword] = useState(false);
+    const item = useSelector((state: RootState) => state.login.user)
+    const showPassword = useSelector((state: RootState) => state.login.showPassword)
     const error = useSelector((state: RootState) => state.collection.codeStatus);
     const navigate = useNavigate(); 
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+        dispatch(setShowPassword());
     };
 
     const handleSubmit = async (event) => {
@@ -22,8 +25,8 @@ function Login() {
         const route = `/users/login`;
         const encryptedPassword = btoa(item.password);
         await dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
-        setItem({name: "", email: "", password: ""});
-        navigate("/")
+        dispatch(cleanUser());
+        navigate("/");
     };
 
     return ( 
@@ -32,16 +35,16 @@ function Login() {
             <form className='login-form_container'>
                 <div className='form_input'>  
                     <label htmlFor='name'>Name</label>
-                    <input type='text' id='name' value={item.name} onChange={(e) => setItem({...item, name: e.target.value})}/>
+                    <input type='text' id='name' value={item.name} onChange={(e) => dispatch(setName(e.target.value))}/>
                 </div>
                 <div className='form_input'>  
                     <label htmlFor='email'>Email</label>
-                    <input type='email' id='email' value={item.email} onChange={(e) => setItem({...item, email: e.target.value})}/>
+                    <input type='email' id='email' value={item.email} onChange={(e) => dispatch(setEmail(e.target.value))}/>
                 </div>
                 <div className='form_input'>  
                     <label htmlFor='password'>Password</label>
                     <BsEye className="toggle_password_button" onClick={togglePasswordVisibility} />
-                    <input type={!showPassword ? 'password' : 'input'} id="password" value={item.password} onChange={(e) => setItem({...item, password: e.target.value})}/>
+                    <input type={!showPassword ? 'password' : 'input'} id="password" value={item.password} onChange={(e) => dispatch(setPassword(e.target.value))}/>
                 </div>
                 <button type="submit" className="submit_button" onClick={handleSubmit}>Submit</button>
             </form>
