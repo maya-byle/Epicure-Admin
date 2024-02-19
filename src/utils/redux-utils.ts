@@ -9,16 +9,17 @@ export const transformData = (data: ICollection[]) => {
         if (typeof document[key] === "boolean")
           transformedDocument[key] = document[key].toString();
         else if (!document[key]) transformedDocument[key] = "";
-        else if (key === "tags") {
+        else if (key === "tags")
           transformedDocument[key] = setTags(document[key]);
-        } else if (
+        else if (
           Array.isArray(document[key]) &&
           document[key].length > 0 &&
           "name" in document[key][0]
         ) {
-          transformedDocument[key] = document[key].map(
-            (item: any) => item.name
-          );
+          // Case: restaurants
+          transformedDocument[key] = document[key]
+            .map((item: any) => item.name)
+            .join(", ");
         } else if (
           typeof document[key] === "object" &&
           "name" in document[key]

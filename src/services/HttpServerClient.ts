@@ -1,7 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import * as constants from "../resources/constants.ts";
 
-const baseURL = "http://localhost:3001/admin/v1/";
+// const baseURL = "http://localhost:3001/admin/v1/";
+const baseURL =
+  "ec2-51-20-81-186.eu-north-1.compute.amazonaws.com:3001/admin/v1/";
 const token = sessionStorage.getItem(constants.USERTOKEN);
 const headers = { token: token };
 
