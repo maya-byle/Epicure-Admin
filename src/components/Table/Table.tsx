@@ -19,6 +19,7 @@ function Table() {
     const modal = useSelector((state: RootState) => state.collection.isModal);
     const chefOfTheWeek = useSelector((state: RootState) => state.collection.chefOfTheWeek);
     
+    console.log(chefOfTheWeek)
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
         if(currLocation === '/restaurants')
@@ -35,6 +36,9 @@ function Table() {
 
     return (
         <div className='table-container'>
+            {chefOfTheWeek &&
+                <p>sdgdshg</p>
+            }
             <table className='table'>
                 <thead>
                     <tr>
