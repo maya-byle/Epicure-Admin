@@ -9,6 +9,7 @@ import { SpinningCircles } from 'react-loading-icons'
 import useCollection from '../../hooks/useCollection.tsx';
 import TableRow from './TableRow.tsx';
 import Modal from '../UI/Modal/Modal.tsx';
+import EditForm from '../EditForm/EditForm.tsx';
 
 function Table() {
     const dispatch = useDispatch<AppDispatch>()
@@ -49,7 +50,7 @@ function Table() {
                     ))}
                 </tbody>
             </table>
-            {modal && <Modal/>}
+            {modal && <Modal><EditForm/></Modal>}
         </div>
     );
 };

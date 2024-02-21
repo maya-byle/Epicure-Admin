@@ -26,7 +26,7 @@ function Login() {
         const encryptedPassword = btoa(item.password);
         await dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
         dispatch(cleanUser());
-        navigate("/");
+        navigate("/chefs");
     };
 
     return ( 

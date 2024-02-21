@@ -3,10 +3,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../../redux/tables/tableSlice.ts';
 import { BsX } from 'react-icons/bs';
-import EditForm from '../../EditForm/EditForm.tsx';
 import { Fade } from "react-awesome-reveal";
 
-function Modal() {
+function Modal(props) {
     const dispatch = useDispatch();
 
     const handleClose = () => {
@@ -22,12 +21,11 @@ function Modal() {
                   <BsX size={30} color={'white'} onClick={handleClose}/>
                 </button>
               </div>
-              <EditForm/>
+              {props.children}
             </div>
           </Fade>
       </div>
     );
-  };
+}
 
 export default Modal;
-
