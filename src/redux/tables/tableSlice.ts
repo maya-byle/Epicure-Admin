@@ -9,7 +9,6 @@ interface ITable {
   isModal: ICollection | undefined;
   currDocument: string | undefined;
   codeStatus: string | undefined;
-  chefOfTheWeek: undefined | string;
   chefs: ICollection[];
 }
 
@@ -19,7 +18,6 @@ const initialState: ITable = {
   isModal: undefined,
   currDocument: undefined,
   codeStatus: undefined,
-  chefOfTheWeek: undefined,
   chefs: [],
 };
 
@@ -32,9 +30,6 @@ const tableSlice = createSlice({
     },
     setDocument(state, action) {
       state.currDocument = action.payload;
-    },
-    setChefOfTheWeek(state, action) {
-      state.chefOfTheWeek = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -103,6 +98,6 @@ const tableSlice = createSlice({
   },
 });
 
-export const { setModal, setDocument, setChefOfTheWeek } = tableSlice.actions;
+export const { setModal, setDocument } = tableSlice.actions;
 
 export default tableSlice.reducer;
