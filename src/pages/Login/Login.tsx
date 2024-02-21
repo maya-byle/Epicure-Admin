@@ -9,8 +9,6 @@ import { setName, setEmail, setPassword, setShowPassword, cleanUser } from '../.
 
 function Login() {
     const dispatch = useDispatch<AppDispatch>();
-    // const [item, setItem] = useState({name: "", email: "", password: ""});
-    // const [showPassword, setShowPassword] = useState(false);
     const item = useSelector((state: RootState) => state.login.user)
     const showPassword = useSelector((state: RootState) => state.login.showPassword)
     const error = useSelector((state: RootState) => state.collection.codeStatus);

@@ -85,7 +85,7 @@ function TableRow({ item }) {
                                         value={changedItem[key]}
                                         onChange={(e) => handleChange(e, key)}
                                     >
-                                        <option value="false">False</option>
+                                        <option value="false" disabled={changedItem[key] !== "false"}>False</option>
                                         <option value="true">True</option>
                                     </select>
                                 ) : key === 'rank' || key === "price" ? (

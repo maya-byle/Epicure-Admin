@@ -1,9 +1,9 @@
-import './editForm.scss';
+import './createForm.scss';
 import React, { useCallback, useState } from 'react';
 import { useLocation } from 'react-router';
 import useCollection from '../../hooks/useCollection.tsx';
 import { Image } from 'cloudinary-react';
-import UploadWidget from './uploadWidget';
+import UploadWidget from './uploadWidget.js';
 import { AppDispatch, RootState } from '../../redux/store.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import * as thunks from '../../redux/tables/tableThunks.ts';
@@ -15,7 +15,7 @@ function EditForm() {
     const documentType = useCollection()?.type
     const newFormFields = {};
     for (const key in documentType) {
-      if(key !== "_id" && key !=="status" && key !=="restaurants")
+      if(key!=="_id" && key!=="status" && key !=="restaurants" && key !=="isChefOfTheWeek")
         newFormFields[documentType[key]] = "";    
     }
     const dispatch = useDispatch<AppDispatch>()
@@ -88,6 +88,18 @@ function EditForm() {
                                 {chef.name}
                             </option>
                         )}
+                      </select>
+                    ) : key === 'tags' ? (
+                      <select
+                          id={key}
+                          name={key}
+                          value={formData[key]}
+                          onChange={(e) => handleInputChange(key, e.target.value)}
+                      >
+                          <option value="">None</option>
+                          <option value="Spicy">Spicy</option>
+                          <option value="Vegan">Vegan</option>
+                          <option value="Vegetarian">Vegetarian</option>
                       </select>
                     ) : key === 'rank' || key === "price" ? (
                       <input

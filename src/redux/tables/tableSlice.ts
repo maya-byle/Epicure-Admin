@@ -5,6 +5,7 @@ import { ICollection } from "../../Types/collectionType.ts";
 
 interface ITable {
   collectionData: ICollection[];
+  filterdData: ICollection[];
   status: string;
   isModal: ICollection | undefined;
   currDocument: string | undefined;
@@ -14,6 +15,7 @@ interface ITable {
 
 const initialState: ITable = {
   collectionData: [],
+  filterdData: [],
   status: constants.STATUS_CODE.IDLE,
   isModal: undefined,
   currDocument: undefined,
@@ -31,6 +33,12 @@ const tableSlice = createSlice({
     setDocument(state, action) {
       state.currDocument = action.payload;
     },
+    filterData(state, action) {
+      const filtered = state.collectionData.filter((item) =>
+        item.name.toLowerCase().startsWith(action.payload.toLowerCase())
+      );
+      state.filterdData = filtered;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,6 +48,7 @@ const tableSlice = createSlice({
       .addCase(thunks.fetchData.fulfilled, (state, action) => {
         state.status = constants.STATUS_CODE.IDLE;
         state.collectionData = action.payload;
+        state.filterdData = action.payload;
       })
       .addCase(thunks.fetchData.rejected, (state, action) => {
         state.status = constants.STATUS_CODE.REJECTED;
@@ -98,6 +107,6 @@ const tableSlice = createSlice({
   },
 });
 
-export const { setModal, setDocument } = tableSlice.actions;
+export const { setModal, setDocument, filterData } = tableSlice.actions;
 
 export default tableSlice.reducer;

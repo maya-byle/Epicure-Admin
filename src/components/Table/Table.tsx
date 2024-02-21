@@ -9,13 +9,14 @@ import { SpinningCircles } from 'react-loading-icons'
 import useCollection from '../../hooks/useCollection.tsx';
 import TableRow from './TableRow.tsx';
 import Modal from '../UI/Modal/Modal.tsx';
-import EditForm from '../EditForm/EditForm.tsx';
+import CreateForm from '../EditForm/CreateForm.tsx';
+import Filter from '../UI/Filter/Filter.tsx';
 
 function Table() {
     const dispatch = useDispatch<AppDispatch>()
     const currLocation = useLocation().pathname;
     const currType = useCollection()?.type;
-    const data = useSelector((state: RootState) => state.collection.collectionData);
+    const data = useSelector((state: RootState) => state.collection.filterdData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
     const modal = useSelector((state: RootState) => state.collection.isModal);
     
@@ -35,6 +36,7 @@ function Table() {
 
     return (
         <div className='table-container'>
+            <Filter/>
             <table className='table'>
                 <thead>
                     <tr>
@@ -50,7 +52,7 @@ function Table() {
                     ))}
                 </tbody>
             </table>
-            {modal && <Modal><EditForm/></Modal>}
+            {modal && <Modal><CreateForm/></Modal>}
         </div>
     );
 };
