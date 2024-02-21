@@ -78,6 +78,16 @@ function TableRow({ item }) {
                                             </option>
                                         )}
                                     </select>
+                                ) : key === 'isChefOfTheWeek' ? (  //In chefs table
+                                    <select
+                                        id={key}
+                                        name={key}
+                                        value={changedItem[key]}
+                                        onChange={(e) => handleChange(e, key)}
+                                    >
+                                        <option value="false">False</option>
+                                        <option value="true">True</option>
+                                    </select>
                                 ) : key === 'rank' || key === "price" ? (
                                  <input
                                      type="number"

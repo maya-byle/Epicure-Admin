@@ -1,5 +1,5 @@
 import './table.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store.ts';
@@ -17,9 +17,7 @@ function Table() {
     const data = useSelector((state: RootState) => state.collection.collectionData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
     const modal = useSelector((state: RootState) => state.collection.isModal);
-    const chefOfTheWeek = useSelector((state: RootState) => state.collection.chefOfTheWeek);
     
-    console.log(chefOfTheWeek)
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
         if(currLocation === '/restaurants')
@@ -36,9 +34,6 @@ function Table() {
 
     return (
         <div className='table-container'>
-            {chefOfTheWeek &&
-                <p>sdgdshg</p>
-            }
             <table className='table'>
                 <thead>
                     <tr>
