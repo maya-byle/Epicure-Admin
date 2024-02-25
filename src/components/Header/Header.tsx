@@ -3,7 +3,7 @@ import { BsDatabaseFillAdd } from 'react-icons/bs';
 import './header.scss';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store.ts';
-import { setModal } from '../../redux/tables/tableSlice.ts';
+import { setCreateDocument } from '../../redux/tables/tableSlice.ts';
 import useCollection from '../../hooks/useCollection.tsx';
 
 function Header() {
@@ -11,7 +11,7 @@ function Header() {
   const collectionName: string|undefined = useCollection()?.name;
   
     const openModal = () => {
-      dispatch(setModal({}));
+      dispatch(setCreateDocument({}));
     };
   
     return (

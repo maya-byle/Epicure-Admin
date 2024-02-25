@@ -1,7 +1,7 @@
 import './modal.scss';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setModal } from '../../../redux/tables/tableSlice.ts';
+import { setCreateDocument, setOpenImg } from '../../../redux/tables/tableSlice.ts';
 import { BsX } from 'react-icons/bs';
 import { Fade } from "react-awesome-reveal";
 
@@ -9,7 +9,8 @@ function Modal(props) {
     const dispatch = useDispatch();
 
     const handleClose = () => {
-        dispatch(setModal(undefined));
+        dispatch(setCreateDocument(undefined));
+        dispatch(setOpenImg(undefined));
     };
 
     return (

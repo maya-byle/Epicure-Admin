@@ -18,8 +18,9 @@ function Table() {
     const currType = useCollection()?.type;
     const data = useSelector((state: RootState) => state.collection.filterdData);
     const loadingStatus = useSelector((state: RootState) => state.collection.status);
-    const modal = useSelector((state: RootState) => state.collection.isModal);
-    
+    const isCreateDocument = useSelector((state: RootState) => state.collection.isCreateDocument);
+    const isOpenImg = useSelector((state: RootState) => state.collection.isImgOpen);
+
     useEffect(()=>{
         dispatch(thunks.fetchData(currLocation));
         if(currLocation === '/restaurants')
@@ -52,7 +53,12 @@ function Table() {
                     ))}
                 </tbody>
             </table>
-            {modal && <Modal><CreateForm/></Modal>}
+            {isCreateDocument && <Modal><CreateForm/></Modal>}
+            {isOpenImg && 
+                <Modal>
+                    <img src={isOpenImg} alt='chef' style={{height:'50vh', width:'30vw', objectFit:'cover'}}/>
+                </Modal>
+            }
         </div>
     );
 };

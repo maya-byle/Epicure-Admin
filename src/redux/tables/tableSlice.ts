@@ -7,7 +7,8 @@ interface ITable {
   collectionData: ICollection[];
   filterdData: ICollection[];
   status: string;
-  isModal: ICollection | undefined;
+  isCreateDocument: ICollection | undefined;
+  isImgOpen: string | undefined;
   currDocument: string | undefined;
   codeStatus: string | undefined;
   chefs: ICollection[];
@@ -17,7 +18,8 @@ const initialState: ITable = {
   collectionData: [],
   filterdData: [],
   status: constants.STATUS_CODE.IDLE,
-  isModal: undefined,
+  isCreateDocument: undefined,
+  isImgOpen: undefined,
   currDocument: undefined,
   codeStatus: undefined,
   chefs: [],
@@ -27,8 +29,11 @@ const tableSlice = createSlice({
   name: "tableSlice",
   initialState,
   reducers: {
-    setModal(state, action) {
-      state.isModal = action.payload;
+    setCreateDocument(state, action) {
+      state.isCreateDocument = action.payload;
+    },
+    setOpenImg(state, action) {
+      state.isImgOpen = action.payload;
     },
     setDocument(state, action) {
       state.currDocument = action.payload;
@@ -107,6 +112,7 @@ const tableSlice = createSlice({
   },
 });
 
-export const { setModal, setDocument, filterData } = tableSlice.actions;
+export const { setCreateDocument, setOpenImg, setDocument, filterData } =
+  tableSlice.actions;
 
 export default tableSlice.reducer;

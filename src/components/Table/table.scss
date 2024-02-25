@@ -1,6 +1,6 @@
 .table-container {
     background-color: inherit;
-    overflow-x: auto;
+    overflow-x: hidden;
     margin-top: 20px;
     height: 100%;
     overflow: auto;
@@ -8,7 +8,7 @@
 
     .table {
         background-color: rgb(27, 40, 63);
-        overflow-x: hidden;
+        overflow-x: auto;
         border-collapse: collapse;
         border-radius: 10px;
         white-space: nowrap;
@@ -101,7 +101,6 @@
             select, input {
                 height: 30px; 
                 width: 100%;
-
             }
         }
     }

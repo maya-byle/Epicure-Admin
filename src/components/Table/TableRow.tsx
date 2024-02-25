@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../../redux/store.ts';
 import { BsFillPencilFill, BsFillTrashFill, BsCopy, BsSave, BsX } from 'react-icons/bs';
 import useCollection from '../../hooks/useCollection.tsx';
 import * as constants from '../../resources/constants.ts';
-import { setDocument } from '../../redux/tables/tableSlice.ts';
+import { setDocument, setOpenImg } from '../../redux/tables/tableSlice.ts';
 import useHandlers from '../../hooks/useHandlers.tsx';
 
 function TableRow({ item }) {
@@ -19,6 +19,10 @@ function TableRow({ item }) {
         return alert(constants.TABLE_CONSTANTS.ROUTE_ERROR);
     }
 
+    const openImg = (src: string) => {
+        dispatch(setOpenImg(src))
+    }
+
     return (
         <tr key={item._id}>
             {selectedDocument !== changedItem._id ? (
@@ -30,6 +34,7 @@ function TableRow({ item }) {
                                     id={`image_${changedItem._id}`}
                                     src={item[key]}
                                     alt="img"
+                                    onClick={() => openImg(item[key])}
                                  />
                             ) : (
                                 item[key]

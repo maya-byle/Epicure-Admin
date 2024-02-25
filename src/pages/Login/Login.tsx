@@ -1,5 +1,5 @@
 import './login.scss';
-import React, { useState } from 'react';
+import React from 'react';
 import { BsEye} from 'react-icons/bs';
 import * as thunks from '../../redux/tables/tableThunks.ts';
 import { AppDispatch, RootState } from '../../redux/store.ts';
@@ -24,7 +24,8 @@ function Login() {
         const encryptedPassword = btoa(item.password);
         await dispatch(thunks.login({ route, item: {...item, password: encryptedPassword} }));
         dispatch(cleanUser());
-        navigate("/chefs");
+        if(sessionStorage.getItem("userToken"))
+            navigate("/chefs");
     };
 
     return ( 
